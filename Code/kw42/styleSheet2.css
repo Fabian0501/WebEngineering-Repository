@@ -18,9 +18,8 @@
 
 .image {
     width: 98%;
-    height: 97%;
+    height: 98%;
     display: none;
-    align-content: center;
 }
 
 .checkbox:checked ~ .box .image {
