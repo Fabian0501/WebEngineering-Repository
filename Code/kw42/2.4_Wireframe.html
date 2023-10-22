@@ -12,21 +12,12 @@
         }
         input[type=text], select{
             width: 25%;
-            margin-top: 6px;
-            height: 35px;
-        }
-        .left_item_choose {
-            float: left;
-            width: 60%;
-            margin-top: 10px;
-
+            height: 30px;
         }
         .font {
-            width: 60%;
-            margin-top: 6px;
-            margin-right: 15px;
+            margin-top: 5px;
+            margin-right: 25px; /* Platz zwischen text und input feldern */
             font-family: 'Roboto', sans-serif;
-
         }
         .left_item {
             float: left;
@@ -74,20 +65,20 @@
             <h4 class="font">* Age: </h4>
         </div>
         <div class="right_item">
-            <input placeholder="Your last name..">
+            <input placeholder="Age">
         </div>
     </div>
 
     <div class="row">
-        <div class="left_item_choose" align="right">
+        <div class="left_item" align="right">
            <!-- <label> Which option best describes your current role? </label>-->
             <h4 class="font">Which option best describes your current role?</h4>
         </div>
         <div class="right_item">
-            <select id="country" name="country">
-                <option value="australia">Student</option>
-                <option value="canada">Unemployed</option>
-                <option value="usa">Employed</option>
+            <select>
+                <option>Student</option>
+                <option>Unemployed</option>
+                <option>Employed</option>
             </select>
         </div>
     </div>
