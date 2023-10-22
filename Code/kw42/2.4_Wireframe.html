@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        .rounded-box {
+            width: 45%;
+            height: 85vh;
+            background-color: snow;
+            border-radius: 20px 20px 0 0;
+            margin: auto;
+        }
+        .font_left {
+            margin-top: 20px;
+            margin-right: 25px; /* Platz zwischen text und input feldern */
+            position: relative;
+        }
+        .left_item {
+            float: left;
+            width: 63.5%;
+        }
+        .right_item {
+            float: left;
+            margin-top: 20px;
+        }
+        input[type=text], select{
+            width: 70px;
+            height: 30px;
+        }
+        input[type=radio] {
+            margin-top: 10px;
+            text-align: left;
+        }
+        body{
+            background-color: #a9d7d1;
+            font-family: 'Roboto', sans-serif;
+        }
+    </style>
+</head>
+<body>
+<h1 align="center" style="font-family: 'Roboto', sans-serif">Survey Form</h1>
+<div class="rounded-box">
+    <br>
+    <h3 align="center" style="font-family: 'Roboto', sans-serif">
+        Let us know how we can improve freeCodeCamp
+    </h3>
+
+<!--  Name  -->
+    <div>
+        <div class="left_item" align="right">
+            <div class="font_left">
+                * Name:
+            </div>
+        </div>
+        <div class="right_item">
+            <input placeholder="Enter your name">
+        </div>
+    </div>
+
+<!--  Email  -->
+    <div>
+        <div class="left_item" align="right">
+            <div class="font_left">
+                * Email:
+            </div>
+        </div>
+        <div class="right_item">
+            <input placeholder="Enter your Email">
+        </div>
+    </div>
+
+<!--  Age  -->
+    <div>
+        <div class="left_item" align="right">
+            <div class="font_left">
+                * Age:
+            </div>
+        </div>
+        <div class="right_item">
+            <input placeholder="Age">
+        </div>
+    </div>
+
+<!--  choose-options first  -->
+    <div>
+        <div class="left_item" align="right">
+            <div class="font_left">
+                Which option best describes your current role?
+            </div>
+        </div>
+        <div class="right_item">
+            <select>
+                <option>Student</option>
+                <option>Unemployed</option>
+                <option>Employed</option>
+            </select>
+        </div>
+    </div>
+
+<!--  choose-radio-list  -->
+    <div>
+        <div class="left_item" align="right">
+            <div class="font_left">
+                How likely is that you would recommend <br> freeCodeCamp to a friend?
+            </div>
+        </div>
+        <div class="right_item" style="margin-top: 15px">
+            <input type="radio"> Definitely <br>
+            <input type="radio"> Maybe <br>
+            <input type="radio"> Not sure
+        </div>
+    </div>
+
+<!--  choose-options-last  -->
+    <div>
+        <div class="left_item" align="right">
+            <div class="font_left">
+                What do you like the most in FCC?
+            </div>
+        </div>
+        <div class="right_item">
+            <select style="width: auto;">
+                <option>Select an option</option>
+                <option>xxxxx</option>
+                <option>yyyyy</option>
+            </select>
+        </div>
+    </div>
+
+<!--  checkbox  -->
+    <div>
+        <div class="left_item" align="right">
+            <div class="font_left">
+                Things that should be improved in the future <br> (Check all that apply):
+            </div>
+        </div>
+        <div class="right_item" style="margin-top: 25px">
+            <input type="checkbox" style="margin-bottom: 15px;"> Front-end Projects <br>
+            <input type="checkbox" style="margin-bottom: 15px;"> Back-end Projects <br>
+            <input type="checkbox" style="margin-bottom: 15px;"> Data Visualization
+
+        </div>
+    </div>
+</div>
+</body>
+</html>
+
+
+
