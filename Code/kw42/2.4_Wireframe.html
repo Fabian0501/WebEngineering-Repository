@@ -4,34 +4,43 @@
     <meta charset="UTF-8">
     <style>
         .rounded-box {
-            width: 95%;
+            width: 60%;
             height: 85vh;
             background-color: snow;
             border-radius: 20px 20px 0 0;
             margin: auto;
         }
-        input[type=text], select{
-            width: 25%;
-            height: 30px;
-        }
-        .font {
-            margin-top: 5px;
+        .font_left {
+            margin-top: 20px;
             margin-right: 25px; /* Platz zwischen text und input feldern */
-            font-family: 'Roboto', sans-serif;
+            position: relative;
+            font-weight: bold;
         }
         .left_item {
             float: left;
-            width: 60%;
-            /*margin-top: 1px;*/
+            width: 63.5%;
         }
         .right_item {
             float: left;
-            width: 20%;
-            margin-top: 5px;
+            width: 300px; /* bestimmt nur die weite des choose feldes */
+            margin-top: 20px;
+        }
+        input[type=text], select{
+            width: 70px;
+            height: 30px;
+        }
+        input[type=radio] {
+            margin-top: 10px;
+            text-align: left;
+            /*font-weight: bolder;*/
+        }
+        body{
+            background-color: #a9d7d1;
+            font-family: 'Roboto', sans-serif;
         }
     </style>
 </head>
-<body style="background-color: #a9d7d1">
+<body>
 <h1 align="center" style="font-family: 'Roboto', sans-serif">Survey Form</h1>
 <div class="rounded-box">
     <br>
@@ -39,40 +48,44 @@
         Let us know how we can improve freeCodeCamp
     </h3>
 
-    <div class="row">
+    <div>
         <div class="left_item" align="right">
-           <!-- <label style="font-family: Roboto, sans-serif">* Name: </label>-->
-            <h4 class="font">* Name: </h4>
+            <div class="font_left">
+                * Name:
+            </div>
         </div>
         <div class="right_item">
             <input placeholder="Enter your name">
         </div>
     </div>
 
-    <div class="row">
+    <div>
         <div class="left_item" align="right">
-            <!--<label>* Email:</label>-->
-            <h4 class="font">* Email: </h4>
+            <div class="font_left">
+                * Email:
+            </div>
         </div>
         <div class="right_item">
             <input placeholder="Enter your Email">
         </div>
     </div>
 
-    <div class="row">
+    <div>
         <div class="left_item" align="right">
-            <!--<label>* Age:</label>-->
-            <h4 class="font">* Age: </h4>
+            <div class="font_left">
+                * Age:
+            </div>
         </div>
         <div class="right_item">
             <input placeholder="Age">
         </div>
     </div>
 
-    <div class="row">
+    <div>
         <div class="left_item" align="right">
-           <!-- <label> Which option best describes your current role? </label>-->
-            <h4 class="font">Which option best describes your current role?</h4>
+            <div class="font_left">
+                Which option best describes your current role?
+            </div>
         </div>
         <div class="right_item">
             <select>
@@ -81,6 +94,23 @@
                 <option>Employed</option>
             </select>
         </div>
+    </div>
+
+    <div>
+        <div class="left_item" align="right">
+            <div class="font_left">
+                How likely is that you would recommend <br> freeCodeCamp to a friend?
+            </div>
+        </div>
+        <div class="right_item" style="margin-top: 15px">
+            <input type="radio"> Definitely <br>
+            <input type="radio"> Maybe <br>
+            <input type="radio"> Not sure
+        </div>
+    </div>
+
+    <div>
+
     </div>
 
 </div>
