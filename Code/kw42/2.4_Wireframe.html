@@ -14,7 +14,7 @@
             margin-top: 20px;
             margin-right: 25px; /* Platz zwischen text und input feldern */
             position: relative;
-            font-weight: bold;
+            /*font-weight: bolder;*/
         }
         .left_item {
             float: left;
@@ -22,7 +22,7 @@
         }
         .right_item {
             float: left;
-            width: 300px; /* bestimmt nur die weite des choose feldes */
+            /*width: 30%; !* bestimmt nur die weite des choose feldes *!*/
             margin-top: 20px;
         }
         input[type=text], select{
@@ -109,9 +109,36 @@
         </div>
     </div>
 
-    <div>
 
+    <div>
+        <div class="left_item" align="right">
+            <div class="font_left">
+                What do you like the most in FCC?
+            </div>
+        </div>
+        <div class="right_item">
+            <select style="width: auto;">
+                <option>Select an option</option>
+                <option>Unemployed</option>
+                <option>Employed</option>
+            </select>
+        </div>
     </div>
+
+    <div>
+        <div class="left_item" align="right">
+            <div class="font_left">
+                Things that should be improved in the future <br> (Check all that apply):
+            </div>
+        </div>
+        <div class="right_item" style="margin-top: 25px">
+            <input type="checkbox" style="margin-bottom: 15px;"> Front-end Projects <br>
+            <input type="checkbox" style="margin-bottom: 15px;"> Back-end Projects <br>
+            <input type="checkbox" style="margin-bottom: 15px;"> Data Visualization
+
+        </div>
+    </div>
+
 
 </div>
 
