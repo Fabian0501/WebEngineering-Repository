@@ -17,11 +17,13 @@
 }
 
 .image {
-    width: 98%;
-    height: 98%;
+    /*width: 98%; */
+    width: calc(100% - 15px);
+    /*height: 98%;*/
+    height: calc(100% - 15px);
     display: none;
 }
 
-.checkbox:checked ~ .box .image {
+.checkbox:checked + .box .image {
     display: block;
 }
