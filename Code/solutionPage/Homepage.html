@@ -4,264 +4,48 @@
     <meta charset="UTF-8">
     <title>Homepage</title>
 
+    <link rel="stylesheet" href="navigationBar.css">
+
     <style>
-        .header {
-            padding: 25px;
-            width: 100%;
-            height: 50%;
-        }
         .headerCenter {
             border-radius: 25px;
-            padding-top: 30px;
+            padding-top: 40px;
             width: 50%;
             height: 150px;
-            background-image: linear-gradient( rgba(255,255,255,80%), rgb(169,215,209));
+            background-image: linear-gradient( rgba(255,255,255,60%), rgb(169,215,209));
             transition: width 1.5s; /*, height 2s, transform 2s;*/
+            position: sticky;
         }
         .headerCenter:hover {
             width: 80%;
             /*transform: rotate(360deg);*/
-
-        }
-        .background {
-            background-color: snow;
         }
         body {
             background-color: #a9d7d1;
             font-family: 'Roboto', sans-serif;
-
         }
     </style>
-
 </head>
 
 <body>
-<div class="header" align="center">
+<div align="center">
     <div class="headerCenter" align="center">
         <h1 align="center"><b>Solution Page</b></h1>
     </div>
 </div>
 <br>
-<hr color="black">
 
-<div>
 
+<div align="center">
+    <ul class="menu">
+        <li class="menu-item">
+            <a href="#home">Home</a> </li>
+        <li class="menu-item"><a href="#news">News</a></li>
+        <li class="menu-item"><a href="#contact">Contact</a></li>
+        <li class="menu-item"><a href="#about">About</a></li>
+    </ul>
 </div>
 
 
-<ol>
-    <li><ins><b>World Wide Web</b></ins></li>
-    <br>
-    <ul>
-        <li><b>Mit welchen fachlichen Argumenten
-            wurde das WWW-Proposal von Tim Burners Lee abgelehnt?</b></li>
-        <ul>
-            <li>es sei eine mathematische Rigorosität</li>
-            <li>die broken links seien ein großes problem</li>
-            <li>verteilten texte seien nicht gewollt, es seien lieber verteilte Objekte bevorzugt</li>
-            <li>es sollten Objekt Protokolle statt Text Protokolle verwendet werden.</li>
-            <li>das Konzept von Tim Burners Lee wäre ein wissenschaftlicher Rückschritt gewesen</li>
-        </ul>
-        <li><b>Was sind die fachlichen Argumente, warum das WWW dennoch ein Erfolg wurde?</b></li>
-        <ul>
-            <li>Dezentralisierung</li>
-            <li>orthogonale Technologien, die unabhängig voneinander weiterentwickelt werden konnten</li>
-            <li>weltweit eindeutige Identifikation der URL</li>
-            <li>rein text basierendes Protokoll, und zwar HTTP</li>
-            <li>hypertext HTML</li>
-        </ul>
-        <li><b>Was wäre der Preis für die garantierte Verhinderung von "broken links"?</b></li>
-        <ul>
-            <li>
-                Ein enormer aufwand, denn um sicherzustellen, dass alle verwendeten hyperlinks zu einem ziel
-                führen würde vor allem bei großen Projekten und integrierten websites alle verwendeten links regelmäßig überprüft werden müssen.
-            </li>
-        </ul>
-    </ul>
-    <br>
-    <li><ins><b>HTTP</b></ins></li>
-    <br>
-    <ul>
-        <li><b>Sie bekommen im Browser den HTTP Status Code 200. Was bedeutet das?</b></li>
-        <ul>
-            <li>anfrage, war erfolgreich und angefragte Dateien sind enthalten</li>
-        </ul>
-        <li><b>Sie bekommen im Browser den HTTP Status Code 301. Was hat das zu bedeuten?</b></li>
-        <ul>
-            <li>die angefragte Ressource wurde dauerhaft auf eine neue URL verschoben</li>
-        </ul>
-        <li><b>Sie bekommen im Browser den HTTP Status Code 400. Was hat das zu bedeuten? Was können Sie dagegen tun?</b></li>
-        <ul>
-            <li>Die Anfrage des client ist ungültig oder fehlerhaft. Die angefragte URL sollte
-            auf ihre korrektheit überprüft werden
-            </li>
-        </ul>
-        <li><b>Sie bekommen im Browser den HTTP Status Code 403. Was hat das zu bedeuten? Was können Sie dagegen tun?</b></li>
-        <ul>
-            <li>
-                der server verweigert der Zugriff auf die angefragte Ressource, da client keine hinreichende Zugriffsrechte hat.
-                Man sollte die berechtigung ersuchen z.B. aktivieren des VPN clients oder eine Nutzername-Passwort eingabe.
-            </li>
-        </ul>
-        <li><b>n einer Webanwendung benötigen Sie eine OPTIONS-Anfrage, die die Optionen des Servers vor dem eigentlichen
-            Zugriff erfragen soll. Aus Performancegründen soll die Abfrage aber cacheable sein. Wie könnten Sie dafür
-            eine Lösung angehen?
-        </b></li>
-        <ul>
-            <li>
-                die Cachebarkeit der OPTIONS-Anfrage steuern durch HTTP-Header Cache-Control. Zusätzlich setzt man
-                den Header auf public und legt eine max Cache Dauer durch max-age fest.
-            </li>
-        </ul>
-    </ul>
-    <br>
-    <li>
-        <fieldset>
-            <legend><b>Quiz zu HTML</b></legend>
-            <br>
-            <fieldset>
-                <legend><b>Was ist HTML?</b></legend>
-                <ul>
-                    <li>Eine Auszeichnungssprache</li>
-                </ul>
-            </fieldset>
-            <br>
-            <fieldset>
-                <legend><b>Wofür steht HTML?</b></legend>
-                <ul>
-                    <li>Hypertext Markup Language</li>
-                </ul>
-            </fieldset>
-            <br>
-            <fieldset>
-                <legend><b>Wofür wird HTML eingesetzt?</b></legend>
-                <ul>
-                    <li>für die Strukturierung digitaler Dokumente</li>
-                </ul>
-            </fieldset>
-            <br>
-            <fieldset>
-                <legend><b>Wer hat HTML erfunden?</b></legend>
-                <ul>
-                    <li>Tim Berners-Lee</li>
-                </ul>
-            </fieldset>
-            <br>
-            <fieldset>
-                <legend><b>Zu welchem ursprünglichen Zweck wurde HTML erfunden?</b></legend>
-                <ul>
-                    <li>für den Austausch wissenschaftlicher Publikationen</li>
-                </ul>
-            </fieldset>
-            <br>
-            <fieldset>
-                <legend><b>Wer arbeitet alles an der Weiterentwicklung von HTML?</b></legend>
-                <ul>
-                    <li>das World Wide Web Consortium (W3C)</li>
-                    <li>die Web Hypertext Application Technology Working Group (WHATWG)</li>
-                </ul>
-            </fieldset>
-            <br>
-        </fieldset>
-    </li>
-    <br>
-    <li>
-        <fieldset>
-            <legend>Quiz zu HTML-Tags</legend>
-            <br>
-            <fieldset>
-                <legend><b>Was ist ein HTM-Tag?</b></legend>
-                <ul>
-                    <li>ein Auszeichnungselement</li>
-                </ul>
-            </fieldset>
-            <br>
-            <fieldset>
-                <legend><b>Wofür nutzt man einen HTML-Tag?</b></legend>
-                <ul>
-                    <li>Zur Strukturierung von Webseiteninhalten</li>
-                    <li>Zur Einbettung weiterer Inhalte, die über Text hinausgehen</li>
-                </ul>
-            </fieldset>
-            <br>
-            <fieldset>
-                <legend><b>Woraus besteht ein HTML-Tag und wie setzt man ihn ein?</b></legend>
-                <ul>
-                    <li> &lt;p>Paragraph &lt;/p></li>
-                    <li> &lt;h2>Überschrift &lt;/h2></li>
-                    <li> Hallo Welt! &lt; br>Willkommen. </li>
-                </ul>
-            </fieldset>
-            <br>
-            <fieldset>
-                <legend><b>Was ist ein HTML-Attribut?</b></legend>
-                <ul>
-                    <li>eine Eigenschaft</li>
-                </ul>
-            </fieldset>
-            <br>
-            <fieldset>
-                <legend><b>Wofür nutzt man ein HTML-Attribut?</b></legend>
-                <ul>
-                    <li>zur Beschreibung zusätzlicher Eigenschaften von HTML-Tags</li>
-                </ul>
-            </fieldset>
-            <br>
-            <fieldset>
-                <legend><b>Wie schreibt man einen Kommentar in HTML?</b></legend>
-                <ul>
-                    <li>&lt;!-- Kommentar --></li>
-                </ul>
-            </fieldset>
-        </fieldset>
-    </li>
-    <br>
-    <li><b><ins>Lückentext zu HTML</ins></b></li>
-    <img src="../kw41/Screenshot_WE_App_Kw41.png">
-    <br>
-    <li><b><ins>HTML-Literatur lesen und Fragen beantworten</ins></b></li>
-    <br>
-    <ul>
-        <li><b>Was ist HTML?</b></li>
-        <ul>
-            <li>HTML ist eine auszeichnungssprache die für die Strukturierung digitaler Elemente verwendet wird</li>
-        </ul>
-        <li><b>Wie kann man eine geschachtelte geordnete Liste der Tiefe 3 erzeugen?</b></li>
-        <ul>
-            <li>man verwendet &lt;ul> und &lt;li>. Für geschachtelte listen fügt man innerhalb der liste nochmal &lt;ul> und &lt;li>
-                ein und so erhält man innerhalb der Liste eine neue liste. Dies wiederholt man noch einmal und dann
-                erhält man eine liste der Tiefe 3.
-            </li>
-        </ul>
-        <li><b>Wie ist eine HTML-Tabelle aufgebaut?</b></li>
-        <ul>
-            <li>
-                Tabellen beginnen mit dem tag &lt;table>, darauf folgt &lt;tr> für die erste spalte. &lt;th> ... &lt;/th> wird verwendet
-                für die einzelnen Einträge innerhalb der spalte. Die Spalte wird mit &lt;/tr> geschlossen und mit &lt;tr> wird eine
-                neue unterhalb der vorherigen eröffnet, die gleichermaßen mit Einträgen gefüllt sein kann.
-            </li>
-        </ul>
-        <li><b>Welche Konventionen sollte man bei Pfaden und Dateinamen beachten?</b></li>
-        <ul>
-            <li>vermeiden von Leerzeichen und Sonderzeichen. Verwende konsistente Schreibweisen für Pfade und Dateinamen.</li>
-        </ul>
-        <li><b>Wie baut man in HTML ein Menü?</b></li>
-        <ul>
-            <li>Ein Menü kann durch eine Liste realisiert werden, dessen Inhalte aus &lt;a href=...&lt;/> hyperlinks zu
-                anderen teilen des website führen können.
-            </li>
-        </ul>
-        <li><b>Welche Attribute sollte man bei Bildern wie verwenden?</b></li>
-        <ul>
-            <li>Man sollte bei Bildern auf jeden fall &lt;img src="dateipfad" alt="alternativTextFürBild"> ggf.
-                kann man noch width and height anpassen.
-            </li>
-        </ul>
-    </ul>
-    <li><b>HTML-Wireframe</b></li>
-    <ul>
-        <li><a href="../kw41/kw41_1.7.html">Klicke hier für meine Lösung</a></li>
-    </ul>
-</ol>
 </body>
 </html>
