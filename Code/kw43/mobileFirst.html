@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Title</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+        }
+        .itemHeader {
+            grid-area: header;
+            background-color: red;
+            height: 25vh;
+            width: 90vw; /*andere item passen sich an*/
+        }
+        .itemLeft {
+            grid-area: left;
+            background-color: greenyellow;
+            height: 65vh; /* die anderen items passen sich der höhe an, falls sie keine eigene haben */
+        }
+        .itemMain {
+            grid-area: main;
+            background-color: blue;
+        }
+        .itemRight {
+            grid-area: right;
+            background-color: magenta;
+        }
+        .grid-container {
+            display: grid;
+            grid-template-areas:
+                'header header header header header'
+                'left main main main right'
+                'left main main main right';
+            row-gap: 2vh; /*scheint größer zu sein, weil margin-top: 1vh addiert wird */
+            column-gap: 2vh;
+        }
+        
+        /*media Queries*/
+        @media screen and (max-width: 900px) {
+            .grid-container {
+                grid-template-areas:
+                'header header header header'
+                'left main main main'
+                'left main main main'
+                'right right right right';
+                gap: 5px;
+                /*column-gap: 10px;*/
+            }
+            .itemHeader {
+                width: 93vw;
+            }
+            .itemRight {
+                width: 93vw;
+                height: 20vh;
+            }
+        }
+
+        @media screen and (max-width: 600px) {
+            .grid-container {
+                grid-template-areas:
+                'header'
+                'left'
+                'main'
+                'right';
+            }
+            .itemHeader {
+                width: 95vw;
+                height: 20vh;
+            }
+            .itemLeft {
+                width: 95vw;
+                height: 20vh;
+            }
+            .itemMain {
+                width: 95vw;
+                height: 90vh;
+            }
+            .itemRight {
+                width: 95vw;
+                height: 20vh;
+            }
+        }
+        
+    </style>
+
+</head>
+<body>
+
+
+<div class="grid-container">
+    <div class="itemHeader"></div>
+    <div class="itemLeft"></div>
+    <div class="itemMain"></div>
+    <div class="itemRight"></div>
+</div>
+
+</body>
+</html>
