@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>Title</title>
 
     <style>
@@ -17,90 +18,79 @@
         .itemHeader {
             grid-area: header;
             background-color: red;
-            height: 25vh;
-            width: 90vw; /*andere item passen sich an*/
+            width: 90vw;
+            height: 20vh;
         }
         .itemLeft {
             grid-area: left;
             background-color: greenyellow;
-            height: 65vh; /* die anderen items passen sich der höhe an, falls sie keine eigene haben */
+            width: 90vw;
+            height: 20vh;
         }
         .itemMain {
             grid-area: main;
             background-color: blue;
+            width: 90vw;
+            height: 90vh;
         }
         .itemRight {
             grid-area: right;
             background-color: magenta;
+            width: 90vw;
+            height: 20vh;
         }
         .grid-container {
             display: grid;
             grid-template-areas:
-                'header header header header header'
-                'left main main main right'
-                'left main main main right';
-            row-gap: 2vh; /*scheint größer zu sein, weil margin-top: 1vh addiert wird */
-            column-gap: 2vh;
-        }
-        
-        /*media Queries*/
-        @media screen and (max-width: 900px) {
-            .grid-container {
-                grid-template-areas:
-                'header header header header'
-                'left main main main'
-                'left main main main'
-                'right right right right';
-                gap: 5px;
-                /*column-gap: 10px;*/
-            }
-            .itemHeader {
-                width: 93vw;
-            }
-            .itemRight {
-                width: 93vw;
-                height: 20vh;
-            }
-        }
-
-        @media screen and (max-width: 600px) {
-            .grid-container {
-                grid-template-areas:
                 'header'
                 'left'
                 'main'
                 'right';
-            }
-            .itemHeader {
-                width: 95vw;
-                height: 20vh;
-            }
-            .itemLeft {
-                width: 95vw;
-                height: 20vh;
-            }
-            .itemMain {
-                width: 95vw;
-                height: 90vh;
-            }
-            .itemRight {
-                width: 95vw;
-                height: 20vh;
-            }
+            gap: 2px;
         }
         
-    </style>
+        @media screen and (min-width: 350px) {
+            .itemHeader{width: 95vw;}
+            .itemLeft{width: 95vw;}
+            .itemMain{width: 95vw;}
+            .itemRight{width: 95vw;}
+        }
 
+        @media screen and (min-width: 500px) {
+            .grid-container {
+                display: grid;
+                grid-template-areas:
+                'header header header'
+                'left main main'
+                'left main main'
+                'right right right';
+                gap: 5px;
+            }
+            .itemHeader{width: 93vw;}
+            .itemLeft {width: 25.5vw; height: 90vh;}
+            .itemMain {width: 67vw; height: 90vh;}
+            .itemRight{width: 93vw;}
+        }
+        @media screen and (min-width: 800px)  {
+            .grid-container {
+                display: grid;
+                grid-template-areas:
+                'header header header header header'
+                'left main main main right';
+                gap: 10px;
+            }
+            .itemLeft {width: 20vw; height: 75vh;}
+            .itemMain {width: 50vw; height: 75vh;}
+            .itemRight {width: 20vw; height: 75vh;}
+        }
+    </style>
 </head>
 <body>
-
-
 <div class="grid-container">
     <div class="itemHeader"></div>
     <div class="itemLeft"></div>
     <div class="itemMain"></div>
     <div class="itemRight"></div>
 </div>
-
 </body>
 </html>
