@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Title</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            align-items: center;
+        }
+        .header {
+            background-color:red;
+            color: #ffffff;
+            padding: 20px;
+            height: 20vh;
+            width: 89vw;
+            /*display: flex; !* Flexbox *!
+            justify-content: center; !* Horizontal zentrieren *!
+            align-items: center; !* Vertikal zentrieren *!*/
+        }
+        /*.insideHeader {
+            background-color: white;
+            padding: 20px;
+            height: 10vh;
+            width: 80vw;
+        }*/
+        .left {
+            background-color: greenyellow;
+            padding: 15px;
+            height: 80vh;
+            width: 20%;
+        }
+        .main {
+            background-color: blue;
+            padding: 40px;
+            height: 80vh;
+            width: 50%;
+        }
+        .right {
+            background-color: magenta;
+            padding: 15px;
+            height: 80vh;
+            width: 20%;
+        }
+
+        /*media Queries*/
+        @media screen and (max-width: 900px) {
+            body {
+                gap: 5px;
+            }
+            .header {
+                width: 95vw;
+            }
+            .left {
+                width: 27vw;
+            }
+            .main {
+                width: 66.5vw;
+            }
+            .right {
+                height: 20vh;
+                width: 95vw;
+            }
+        }
+
+        @media screen and (max-width: 600px) {
+            body{
+                gap: 2px;
+            }
+            .header {
+                width: 98vw;
+            }
+            .left {
+                height: 20vh;
+                width: 97vw;
+            }
+            .main {
+                width: 98vw;
+            }
+            .right {
+                width: 98vw;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">
+   <!-- <div class="insideHeader"> im inside the header </div>-->
+</div>
+
+<div class="left"></div>
+
+<div class="main"></div>
+
+<div class="right"></div>
+
+</body>
+</html>
