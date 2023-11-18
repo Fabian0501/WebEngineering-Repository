@@ -10,6 +10,7 @@
     width: 98vw;
     top: 0; /* At the top */
     z-index: 99;
+    cursor: default;
 }
 
 /* Style the navbar links */
@@ -35,6 +36,7 @@
 #navbar a:hover {
     background-color: #ddd;
     color: black;
+    cursor: pointer;
 }
 
 /* Style the active/current link */
