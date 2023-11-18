@@ -2,7 +2,7 @@
 
 /*SIDEBAR FOR THE KW*/
 /* The sidebar menu */
-.sidebar {
+.sidebarKW {
     height: 100%; /* 100% Full-height */
     width: 0; /* 0 width - change this with JavaScript */
     position: fixed; /* Stay in place */
@@ -15,7 +15,7 @@
     transition: 0.5s; /* 0.5 second transition effect to slide in the sidebar */
 }
 /* The sidebar links */
-.sidebar a {
+.sidebarKW a {
     padding: 8px 8px 8px 32px;
     text-decoration: none;
     font-size: 25px;
@@ -25,11 +25,11 @@
     margin-left: 40px;
 }
 /* When you mouse over the navigation links, change their color */
-.sidebar a:hover {
+.sidebarKW a:hover {
     color: #f1f1f1;
 }
 /* Position and style the close button (top right corner) */
-.sidebar .closebtn {
+.sidebarKW .closebtnKW {
     position: absolute;
     top: 0;
     right: 25px;
@@ -37,7 +37,7 @@
     margin-left: 50px;
 }
 /* The button used to open the sidebar */
-.openbtn {
+.openbtnKW {
     font-size: 20px;
     cursor: pointer;
     background-color: #111;
@@ -45,7 +45,7 @@
     padding: 10px 15px;
     border: none;
 }
-.openbtn:hover {
+.openbtnKW:hover {
     background-color: #444;
 }
 /* Style page content - use this if you want to push the page content to the right when you open the side navigation */
@@ -55,6 +55,65 @@
 }
 /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
 @media screen and (max-height: 450px) {
-    .sidebar {padding-top: 15px;}
-    .sidebar a {font-size: 18px;}
+    .sidebarKW {padding-top: 15px;}
+    .sidebarKW a {font-size: 18px;}
+}
+
+
+
+
+
+
+/*SIDEBAR FOR THE Tasks*/
+/* The sidebar menu */
+.sidebarTasks {
+    height: 100%; /* 100% Full-height */
+    width: 0; /* 0 width - change this with JavaScript */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Stay on top */
+    top: 0;
+    left: 0;
+    background-color: #111; /* Black*/
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 60px; /* Place content 60px from the top */
+    transition: 0.5s; /* 0.5 second transition effect to slide in the sidebar */
+}
+/* The sidebar links */
+.sidebarTasks a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+    margin-left: 40px;
+}
+/* When you mouse over the navigation links, change their color */
+.sidebarTasks a:hover {
+    color: #f1f1f1;
+}
+/* Position and style the close button (top right corner) */
+.sidebarTasks .closebtnTasks {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+/* The button used to open the sidebar */
+.openbtnTasks {
+    font-size: 20px;
+    cursor: pointer;
+    background-color: #111;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+}
+.openbtnTasks:hover {
+    background-color: #444;
+}
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+    .sidebarTasks {padding-top: 15px;}
+    .sidebarTasks a {font-size: 18px;}
 }
