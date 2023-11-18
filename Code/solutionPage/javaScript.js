@@ -1,43 +1,49 @@
 
-/*sidebar for KW*/
-/* Set the width of the sidebar to 200px and the left margin of the page content to 200px */
+/**
+ * öffnet die KalenderWochen sidebar und schiebt content auf der website nach rechts. <br>
+ * ggf. wird die andere sidebar geschlossen, wenn si offen ist, sodass nur eine sidebar offen ist.
+ */
 function openKWSidebar() {
-    //schliesst sidebarTasks, wenn sidebarTasks aktiv ist und sidebarKW geöffnet werden soll, sodass immer nur eine von meiden aktiv ist
     if (document.getElementById("sidebarTasks").style.width === "300px") {
         closeTasksSidebar();
     }
     document.getElementById("sidebarKW").style.width = "200px";
-    document.getElementById("main").style.marginLeft = "200px";
+    document.getElementById("navbar").style.marginLeft = "200px";
 }
 
-/* Set the width of the sidebar to 0 and the left margin of the page content to 0 */
+
+/**
+ * schlißt die sidebar Kalenderwochen und schiebt den content auf der website wieder zurück. <br>
+ * Entfernt dem element, der die Liste geöffnet hat, die class "active" beim schliessen der sidebar.
+ */
 function closeKWSidebar() {
     document.getElementById("sidebarKW").style.width = "0";
-    document.getElementById("main").style.marginLeft = "0";
-
-    //beim schliessen der sidebar soll auch der button nicht mehr active sein
+    document.getElementById("navbar").style.marginLeft = "0";
     document.getElementById("kw").classList.remove("active");
 }
 
 
-/*sidebar for important exam Tasks*/
-/* Set the width of the sidebar to 300px and the left margin of the page content to 300px */
+/**
+ * öffnet die Tasks sidebar und schiebt content bei seite. <br>
+ * ggf. wenn die andere sidebar geöffnet ist, wird sie erst geschlossen bevor die neue öffnet.
+ */
 function openTasksSidebar() {
     //schliesst sidebarKW, wenn sidebarKW aktiv ist und sidebarTasks geöffnet werden soll.
     if (document.getElementById("sidebarKW").style.width === "200px") {
        closeKWSidebar();
     }
     document.getElementById("sidebarTasks").style.width = "300px";
-    document.getElementById("main").style.marginLeft = "300px";
+    document.getElementById("navbar").style.marginLeft = "300px";
 
 }
 
-/* Set the width of the sidebar to 0 and the left margin of the page content to 0 */
+/**
+ * schliesst die Tasks sidebar und schiebt contet wieder zurück. <br>
+ * entfernt die class "active" von dem element das die sidebar aufgerufen hat.
+ */
 function closeTasksSidebar() {
     document.getElementById("sidebarTasks").style.width = "0";
-    document.getElementById("main").style.marginLeft = "0";
-
-    //beim schliessen der sidebar soll auch der button nicht mehr active sein
+    document.getElementById("navbar").style.marginLeft = "0";
     document.getElementById("tasks").classList.remove("active");
 }
 
