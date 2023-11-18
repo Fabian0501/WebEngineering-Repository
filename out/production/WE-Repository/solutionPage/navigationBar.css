@@ -59,7 +59,8 @@
     color: white;
 }
 
-.dropdown-content a:hover {background-color: #2e3946
+.dropdown-content a:hover {
+    background-color: #2e3946
 }
 
 .dropdown:hover .dropdown-content {

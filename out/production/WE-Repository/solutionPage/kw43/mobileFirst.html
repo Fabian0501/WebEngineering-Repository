@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Title</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            /*display: flex;
+            flex-wrap: wrap;*/
+            justify-content: center;
+            align-items: center;
+        }
+        .itemHeader {
+            grid-area: header;
+            background-color: red;
+            width: 93vw;
+            height: 20vh;
+        }
+        .itemLeft {
+            grid-area: left;
+            background-color: greenyellow;
+            width: 93vw;
+            height: 20vh;
+        }
+        .itemMain {
+            grid-area: main;
+            background-color: blue;
+            width: 93vw;
+            height: 90vh;
+        }
+        .itemRight {
+            grid-area: right;
+            background-color: magenta;
+            width: 93vw;
+            height: 20vh;
+        }
+        .grid-container {
+            display: grid;
+            grid-template-areas:
+                'header'
+                'left'
+                'main'
+                'right';
+            row-gap: 5px;
+        }
+        
+        @media screen and (min-width: 350px) {
+            .itemHeader{width: 95vw;}
+            .itemLeft{width: 95vw;}
+            .itemMain{width: 95vw;}
+            .itemRight{width: 95vw;}
+        }
+        @media screen and (min-width: 450px) {
+            .itemHeader{width: 96.5vw;}
+            .itemLeft{width: 96.5vw;}
+            .itemMain{width: 96.5vw;}
+            .itemRight{width: 96.5vw;}
+        }
+
+
+        @media screen and (min-width: 600px) {
+            .grid-container {
+                display: grid;
+                grid-template-areas:
+                'header header header'
+                'left main main'
+                'left main main'
+                'right right right';
+                column-gap: 5px;
+                row-gap: 10px;
+            }
+            .itemHeader{width: 97vw;}
+            .itemLeft {width: 25.5vw; height: 90vh;}
+            .itemMain {width: 70vw; height: 90vh;}
+            .itemRight{width: 97vw;}
+        }
+        @media screen and (min-width: 800px)  {
+            .grid-container {
+                display: grid;
+                grid-template-areas:
+                'header header header header header'
+                'left main main main right';
+                column-gap: 10px;
+                row-gap: 10px;
+            }
+            .itemHeader{width: 98vw;}
+            .itemLeft {width: 20vw; height: 75vh;}
+            .itemMain {width: 55vw; height: 75vh;}
+            .itemRight {width: 20vw; height: 75vh;}
+        }
+        @media screen and (min-width: 900px)  {
+            .itemMain{margin-left: 5px; margin-right: 5px;}
+        }
+    </style>
+</head>
+<body>
+<div class="grid-container">
+    <div class="itemHeader"></div>
+    <div class="itemLeft"></div>
+    <div class="itemMain"></div>
+    <div class="itemRight"></div>
+</div>
+</body>
+</html>

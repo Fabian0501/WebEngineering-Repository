@@ -4,8 +4,11 @@
     <meta charset="UTF-8">
     <title>Homepage</title>
 
-    <link rel="stylesheet" href="navigationBar.css">
-
+<!--
+    <link rel="stylesheet" href="header.css">
+-->
+    <link rel="stylesheet" href="sidebar.css">
+    <script src="javaScript.js"></script>
     <style>
         body {
             background-color: #ffffff;
@@ -15,31 +18,42 @@
 </head>
 
 <body>
-<div align="center">
-    <div class="headerCenter" align="center">
-        <h1 align="center"><b>Solution Page</b></h1>
+
+<!--
+<div id="navbar">
+    <a href="#default" id="title">Solution Navigator</a>
+    <div id="navbar-right">
+        <a class="active" href="#home">Home</a>
+        <a href="#contact">Contact</a>
+        <a href="#about">About</a>
     </div>
 </div>
-<br>
+-->
 
-<div class="flex-container">
-    <div class="dropdown">
-        <button class="dropbtn">Kalender Woche</button>
-        <div class="dropdown-content">
-            <a href="#">41</a>
-            <a href="#">42</a>
-            <a href="#">43</a>
-        </div>
-    </div>
-
-    <div class="dropdown">
-        <button class="dropbtn">Klausurrelevenate  Aufgaben</button>
-        <div class="dropdown-content">
-            <a href="kw41/kw41_1.7.html">1.7 HTML-Wireframe</a>
-            <a href="kw42/2.4_Wireframe.html">2.4 Wireframe mit HTML und CSS</a>
-        </div>
-    </div>
+<div id="sidebarKW" class="sidebar">
+    <a class="closebtn" onclick="closeSidebar()">×</a>
+    <a href="#">41</a>
+    <a href="#">42</a>
+    <a href="#">43</a>
+    <a href="#">44</a>
+    <a href="#">45</a>
+    <a href="#">46</a>
 </div>
+
+<div id="">
+
+</div>
+
+<div id="main">
+    <button class="openbtn" onclick="openSidebar()"> ☰ Open Sidebar</button>
+    <h2>Collapsed Sidebar</h2>
+    <p>Click on the hamburger menu/bar icon to open the sidebar, and push this content to the right.</p>
+</div>
+
+
+<!-- hier muss ein tiv hin in dem die nächten elmenete drinne sind mit einem margin-top == height of header sodass text erst nach header -->
+
+
 
 </body>
 </html>

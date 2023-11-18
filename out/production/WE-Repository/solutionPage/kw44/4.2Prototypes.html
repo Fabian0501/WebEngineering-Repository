@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Prototypes</title>
+  <script>
+      var auto = {
+          name: undefined,
+      };
+
+      var person = {
+          name: null,
+          auto: auto
+      };
+
+      var porsche = {
+          __proto__: auto,
+          name: "Porsche"
+      };
+      var mercedes = {
+          __proto__ : auto,
+          name : "Mercedes"
+      };
+
+      var fabian = {
+          __proto__: person,
+          name: "Fabian",
+          auto: porsche
+      };
+
+      var lukas = {
+          __proto__: person,
+          name: "Lukas",
+          auto: porsche
+      };
+
+      function conflict(obj) {
+
+      }
+
+  </script>
+</head>
+<body>
+
+</body>
+</html>

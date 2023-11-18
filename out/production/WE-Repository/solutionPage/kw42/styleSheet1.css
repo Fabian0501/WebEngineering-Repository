@@ -1,0 +1,36 @@
+
+.header {
+    position: sticky; /* klebt das obj. an einer bestimmten pos. fest */
+    top: 0; /*legt fest wo das obj. klebt*/
+    border: 2px solid ;
+    padding: 25px;
+    background-color: rgba(255, 255, 255, 0.9);
+}
+.text {
+    background-color: rgb(231, 221, 226);
+    font-size: 20px;
+
+}
+
+
+/* def. scrollbar attributes */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* def. the track of the scrollbar */
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey;
+    border-radius: 10px;
+}
+
+/* def. how the scrollbar looks when you dont touch it */
+::-webkit-scrollbar-thumb {
+    background: #bababb;
+    border-radius: 10px;
+}
+
+/* def. how the scrollbar looks when you touch it */
+::-webkit-scrollbar-thumb:hover {
+    background: #737374;
+}
