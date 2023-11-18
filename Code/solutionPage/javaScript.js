@@ -21,7 +21,7 @@ function closeKWSidebar() {
 /* Set the width of the sidebar to 300px and the left margin of the page content to 300px */
 function openTasksSidebar() {
     //schliesst sidebarKW, wenn sidebarKW aktiv ist und sidebarTasks geöffnet werden soll.
-    if (document.getElementById("sidebarKW").style.width === "300px") {
+    if (document.getElementById("sidebarKW").style.width === "200px") {
        closeKWSidebar();
     }
     document.getElementById("sidebarTasks").style.width = "300px";
