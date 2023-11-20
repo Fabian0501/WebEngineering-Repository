@@ -38,7 +38,7 @@ function openTasksSidebar() {
 }
 
 /**
- * schliesst die Tasks sidebar und schiebt contet wieder zurück. <br>
+ * schliesst die Tasks sidebar und schiebt content wieder zurück. <br>
  * entfernt die class "active" von dem element das die sidebar aufgerufen hat.
  */
 function closeTasksSidebar() {
@@ -48,7 +48,7 @@ function closeTasksSidebar() {
 }
 
 /**
- * sorgt dafür das bei clik immer nur einer der beiden button activ ist
+ * sorgt dafür das bei click immer nur einer der beiden button aktiv ist
  * @param clickedElement this
  */
 function setActive(clickedElement) {
