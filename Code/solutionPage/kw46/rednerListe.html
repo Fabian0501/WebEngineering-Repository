@@ -13,7 +13,7 @@
         #addButton {
             padding: 6px;
         }
-        #Rednerliste li{
+        #Rednerliste li {
             padding: 5px;
             font-size: 15px;
         }
@@ -43,12 +43,20 @@
 <ul id="Rednerliste"></ul>
 
 <script>
+    let activeTimer = null;
+
     function rednerHinzufügen() {
-        let name = document.getElementById("redner").value; // eingabe extrahieren
+        let name = document.getElementById("redner").value.trim(); // eingabe extrahieren
         document.getElementById("redner").value = ""; // eingabefeld leeren
         let rednerListe = document.getElementById("Rednerliste");
 
-        if (name.trim() !== "") { // Eingabe ist nicht leer
+        if (name !== "") {
+            // Stopp den Timer des vorher aktiven Redners
+            if (activeTimer !== null) {
+                clearInterval(activeTimer.activeTimerInterval);
+                activeTimer.activeTimerInterval = null;
+                activeTimer.querySelector("button").textContent = " Start! ";
+            }
 
             let li = document.createElement("li"); // neues Listen element erstellen
             li.style.fontSize = "20px";
@@ -60,44 +68,72 @@
             li.appendChild(timer);
 
             let startStopButton = document.createElement("button"); // Start/Stop-Button für den Timer hinzufügen
-            startStopButton.textContent = " Start! "; // default textContent
+            startStopButton.textContent = " Stop! "; // default textContent
             startStopButton.addEventListener("click", event => startStopTimer(li, timer, startStopButton));
             li.appendChild(startStopButton);
+
             rednerListe.appendChild(li);
+
+            // Starte den Timer des neu hinzugefügten Redners
+            activeTimer = li;
+            startStopButton.textContent = " Stop! ";
+
+            let timeArray = timer.textContent.split(":");
+            let hours = parseInt(timeArray[0]);
+            let minutes = parseInt(timeArray[1]);
+            let seconds = parseInt(timeArray[2]);
+
+            li.activeTimerInterval = setInterval(function () {
+                seconds++;
+                if (seconds === 60) {
+                    seconds = 0;
+                    minutes++;
+                    if (minutes === 60) {
+                        minutes = 0;
+                        hours++;
+                    }
+                }
+
+                timer.textContent = " " + timeFormat(hours) + ":" + timeFormat(minutes) + ":" + timeFormat(seconds) + " ";
+            }, 1000);
         }
     }
 
     function startStopTimer(li, timerElement, startStopButton) {
-        if (li.activeTimerInterval != null) { // => es existiert ein interval ==> intervall wird gestoppt
+        if (li === activeTimer) { // Der aktive Redner hat auf "Stop" geklickt
+            clearInterval(li.activeTimerInterval);
+            li.activeTimerInterval = null;
+            activeTimer = null;
             startStopButton.textContent = " Start! ";
-            clearInterval(li.activeTimerInterval); // stoppe den aktuellen timer
-            li.activeTimerInterval = null; // li property "activeTimerInterval" auf null ==> timer wurde gestoppt
-            return;
-        }
-
-        // Starte timer
-        startStopButton.textContent = " Stop! ";
-        let timeArray = timerElement.textContent.split(":"); // "00:00:00"
-        let hours = parseInt(timeArray[0]);
-        let minutes = parseInt(timeArray[1]);
-        let seconds = parseInt(timeArray[2]);
-
-        li.activeTimerInterval = setInterval(function () {
-
-            seconds++;
-            if (seconds === 59) {
-                seconds = "0" + 0;
-                minutes++;
-
-                if (minutes === 59) {
-                    minutes =  "0" + 0;
-                    hours++;
-                }
+        } else { // Ein anderer Redner hat auf "Start" geklickt
+            if (activeTimer !== null) {
+                clearInterval(activeTimer.activeTimerInterval);
+                activeTimer.activeTimerInterval = null;
+                activeTimer.querySelector("button").textContent = " Start! ";
             }
 
-            timerElement.textContent = " " + timeFormat(hours) + ":" + timeFormat(minutes) + ":" + timeFormat(seconds) + " ";
+            activeTimer = li;
+            startStopButton.textContent = " Stop! ";
+
+            let timeArray = timerElement.textContent.split(":");
+            let hours = parseInt(timeArray[0]);
+            let minutes = parseInt(timeArray[1]);
+            let seconds = parseInt(timeArray[2]);
+
+            li.activeTimerInterval = setInterval(function () {
+                seconds++;
+                if (seconds === 60) {
+                    seconds = 0;
+                    minutes++;
+                    if (minutes === 60) {
+                        minutes = 0;
+                        hours++;
+                    }
+                }
+
+                timerElement.textContent = " " + timeFormat(hours) + ":" + timeFormat(minutes) + ":" + timeFormat(seconds) + " ";
+            }, 1000);
         }
-        , 1000);
     }
 
     function timeFormat(num) {
