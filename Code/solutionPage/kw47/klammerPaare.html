@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>KlammerPaare</title>
+
+  <style>
+    #inputField {
+      width: 300px;
+      padding: 10px;
+    }
+  </style>
+
+</head>
+<body>
+
+<label for="customBrackets">Enter custom bracket pair:</label>
+<input type="text" id="customBrackets" placeholder="e.g., (), <>, +-">
+<button onclick="addCustomBracket()">Add Custom Bracket</button>
+
+
+<h1>Bracket Checker</h1>
+<label for="inputField">Enter a string with brackets:</label>
+<input type="text" id="inputField" oninput="checkBrackets()" placeholder="() [] {}">
+
+<script>
+
+  const bracketPairs = {
+    '[': ']',
+    '(': ')',
+    '{': '}'
+  };
+
+  function checkBrackets() {
+    const inputField = document.getElementById('inputField');
+    const inputValue = inputField.value;
+    const isValid = areBracketsValid(inputValue, Object.entries(bracketPairs));
+
+    if (isValid) {
+      inputField.style.backgroundColor = 'white';
+    } else {
+      inputField.style.backgroundColor = 'red';
+    }
+
+    console.assert(isValid, 'Invalid bracket pairing');
+  }
+
+  function areBracketsValid(input, bracketPairs) {
+    const stack = [];
+    const openingBrackets = bracketPairs.map(pair => pair[0]);
+    const closingBrackets = bracketPairs.map(pair => pair[1]);
+
+    const bracketPairsMap = {};
+    bracketPairs.forEach(pair => {
+      bracketPairsMap[pair[0]] = pair[1];
+    });
+
+    for (let char of input) {
+      if (openingBrackets.includes(char)) {
+        stack.push(char);
+      } else if (closingBrackets.includes(char)) {
+        if (bracketPairsMap[stack.pop()] !== char) {
+          return false;
+        }
+      }
+    }
+
+    return stack.length === 0;
+  }
+
+  function addCustomBracket() {
+    const customBracketInput = document.getElementById('customBrackets');
+    const customBracketValue = customBracketInput.value;
+
+    if (customBracketValue.length === 2) {
+      const openingBracket = customBracketValue[0];
+      const closingBracket = customBracketValue[1];
+
+      bracketPairs[openingBracket] = closingBracket;
+
+      customBracketInput.value = '';
+
+      console.log('Custom bracket added:', customBracketValue);
+    } else {
+      console.error('Invalid custom bracket input. Please enter a pair of strings.');
+    }
+  }
+
+</script>
+
+</body>
+</html>
