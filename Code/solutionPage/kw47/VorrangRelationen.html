@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vorrang Relationen</title>
+</head>
+<body>
+
+<script>
+    // Die Klasse Vorrang ermöglicht die topologische Sortierung von Vorrangrelationen.
+    class Vorrang {
+
+        constructor(relations) { // erstellt den Graphen und initialisiert die Datenstrukturen.
+            this.graph = new Map(); // Der Graph wird als Map dargestellt, wobei jeder Knoten auf eine Menge von Nachbarn abgebildet wird.
+            this.inDegrees = new Map(); // Eingangsgrade werden als Map dargestellt, wobei jedem Knoten die Anzahl der Kanten zugeordnet wird.
+            this.queue = []; // Die Warteschlange speichert Knoten ohne eingehende Kanten.
+
+            relations.forEach(([parent, child]) => { // Beziehungen werden durchlaufen, um den Graphen und die Eingangsgrade zu erstellen.
+                this.graph.set(parent, (this.graph.get(parent) || new Set()).add(child)); // Falls der Graph den Elternknoten noch nicht hat, wird er initialisiert.
+                this.inDegrees.set(child, (this.inDegrees.get(child) || 0) + 1); // Der Eingangsgrad des Kindknotens wird erhöht.
+                this.inDegrees.set(parent, this.inDegrees.get(parent) || 0); // Falls der Elternknoten nicht im Eingangsgrad ist, wird er initialisiert.
+            });
+
+
+            Array.from(this.inDegrees.keys()).forEach(node => { // Knoten ohne eingehende Kanten werden zur Warteschlange hinzugefügt.
+            if (this.inDegrees.get(node) === 0) this.queue.push(node);
+            });
+        }
+
+        // Die Iterator-Methode ermöglicht die topologische Sortierung.
+        [Symbol.iterator]() {
+            return {
+                next: () => { // Die next-Methode gibt den nächsten Knoten in topologischer Reihenfolge zurück.
+                    if (this.queue.length === 0) return { done: true }; // Sonderfall, wenn die Warteschlange leer ist, sind wir fertig.
+                    const node = this.queue.shift(); // Der erste Knoten in der Warteschlange wird entnommen.
+
+                    if (this.graph.has(node)) { // Falls der Graph den aktuellen Knoten hat, werden die Nachbarn durchlaufen.
+                        this.graph.get(node).forEach(neighbor => {
+                            this.inDegrees.set(neighbor, this.inDegrees.get(neighbor) - 1); // Der Eingangsgrad des Nachbarn wird aktualisiert.
+                            if (this.inDegrees.get(neighbor) === 0) this.queue.push(neighbor); // Wenn der Eingangsgrad 0 wird, wird der Nachbar zur Warteschlange hinzugefügt.
+                        });
+                    }
+                    return { value: node, done: false }; // Der aktuelle Knoten wird als Wert zurückgegeben.
+                }
+            };
+        }
+    }
+
+
+    const studentenLeben = new Vorrang([
+        ["schlafen", "studieren"],
+        ["essen", "studieren"],
+        ["studieren", "prüfen"]
+    ]);
+
+    console.log("Topologische Sortierung:");
+    for (const next of studentenLeben) {
+        console.log(next);
+    }
+</script>
+
+
+</body>
+</html>
