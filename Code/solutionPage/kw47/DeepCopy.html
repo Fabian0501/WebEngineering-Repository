@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DeepCopy</title>
+</head>
+<body>
+
+<script>
+    const deepCopy = struct => {
+
+        if (Array.isArray(struct)) { // Überprüfen, ob struct ein Array ist
+            return struct.map(item => deepCopy(item)); // für jedes Element im Array deepCopy aufrufen und ein neues Array erstellen
+
+        } else if (typeof struct === 'object' && struct !== null) { // Überprüfen, ob struct ein Objekt ist (aber nicht null)
+
+            // für jedes Schlüssel-Wert-Paar deepCopy aufrufen und ein neues Objekt erstellen
+            return Object.fromEntries(Object.entries(struct).map(([key, value]) => [key, deepCopy(value)]));
+
+        } else { // Wenn struct weder ein Array noch ein Objekt ist, einfach den Wert zurückgeben
+            return struct;
+        }
+    };
+
+    const originalObject = {
+        name: "Harvey",
+        age: 30,
+        address: {
+            city: "New York",
+            zip: "10001"
+        },
+        hobbies: ["reading", "law"]
+    };
+
+    const copiedObject = deepCopy(originalObject);
+
+    console.assert(
+        originalObject !== copiedObject,
+        'Test fehlgeschlagen: Die Kopie ist nicht tief genug!'
+    );
+
+</script>
+
+</body>
+</html>
