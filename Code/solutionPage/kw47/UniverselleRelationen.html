@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Universelle Relationen</title>
+</head>
+<body>
+<script>
+  class Vorrang {
+    constructor(relations) {
+      this.graph = new Map();
+      this.inDegrees = new Map();
+      this.queue = [];
+
+      relations.forEach(([parent, child]) => {
+        this.graph.set(parent, (this.graph.get(parent) || new Set()).add(child));
+        this.inDegrees.set(child, (this.inDegrees.get(child) || 0) + 1);
+        this.inDegrees.set(parent, this.inDegrees.get(parent) || 0);
+      });
+
+      Array.from(this.inDegrees.keys()).forEach(node => {
+        if (this.inDegrees.get(node) === 0) this.queue.push(node);
+      });
+    }
+
+    *topologicalGenerator() {
+      while (this.queue.length > 0) {
+        const node = this.queue.shift();
+        if (this.graph.has(node)) {
+          for (const neighbor of this.graph.get(node)) {
+            this.inDegrees.set(neighbor, this.inDegrees.get(neighbor) - 1);
+            if (this.inDegrees.get(neighbor) === 0) this.queue.push(neighbor);
+          }
+        }
+        yield node;
+      }
+    }
+
+    [Symbol.iterator]() {
+      return this.topologicalGenerator();
+    }
+  }
+
+  const neueVorrangRelationen = new Vorrang([
+    ["frühstücken", "arbeiten"],
+    ["arbeiten", "mittagessen"],
+    ["arbeiten", "nachmittagssitzung"],
+    ["mittagessen", "entspannen"],
+    ["nachmittagssitzung", "aufräumen"]
+  ]);
+
+  // Test mit assert
+  const resultNeu = Array.from(neueVorrangRelationen);
+  console.assert(
+          JSON.stringify(resultNeu) === JSON.stringify(["frühstücken", "arbeiten", "mittagessen", "nachmittagssitzung", "entspannen", "aufräumen"]),
+          'Neuer Test fehlgeschlagen!'
+  );
+
+
+  for (const next of neueVorrangRelationen) {
+    console.log(next);
+  }
+</script>
+
+</body>
+</html>
