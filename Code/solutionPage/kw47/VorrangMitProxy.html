@@ -25,7 +25,7 @@
 
             // Proxy für das Logging
             this.proxy = new Proxy(this, {
-                get: function (target, prop, receiver) {
+                get: function (target, prop) {
                     const originalMethod = target[prop];
                     if (typeof originalMethod === 'function') {
                         // Wenn es eine Funktion ist, wird ein neues Wrapper-Log Funktion erstellt.
