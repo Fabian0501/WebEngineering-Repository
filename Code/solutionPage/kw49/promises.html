@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Promises</title>
+</head>
+<body>
+
+<script>
+
+    fetch('a.txt')
+    .then( response => response.text() )
+    .then( textObject => console.log(textObject))
+    .catch(function (error){
+        console.error('Request failed', error);
+        });
+
+    fetch('b.txt')
+        .then( response => response.text() )
+        .then( textObject => console.log(textObject))
+        .catch(function (error){
+            console.error('Request failed', error);
+        });
+
+
+    function splitText(content) {
+        return content.split(/\s+/); // nach leerzeichen trennen
+    }
+
+    Promise.all([
+        fetch('a.txt')
+            .then( response => response.text() )
+            .catch(function (error){
+            console.error('Request failed', error);
+            })
+        ,
+        fetch('b.txt')
+            .then( response => response.text() )
+            .catch(function (error){
+                console.error('Request failed', error);
+            })
+    ])
+    .then(([text_a, text_b]) => {
+        const words_a = splitText(text_a);
+        const words_b = splitText(text_b);
+
+        let i = 0;
+        while (i < words_a.length || i < words_b.length) {
+            const sliceOfA = "a: " +  words_a.slice(i, i + 7).join(' ');
+            const sliceOfB = " | b: "  + words_b.slice(i, i + 7).join(' ');
+
+            console.log( sliceOfA + sliceOfB);
+            i += 7;
+        }
+    })
+    .catch(function (error){
+        console.error('Request failed', error);
+    });
+
+</script>
+
+</body>
+</html>
