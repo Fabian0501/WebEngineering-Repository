@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>async/await</title>
+</head>
+<body>
+
+<script>
+  async function getProcessedData( fileName ) {
+    let file;
+    try {
+      file = await fetch(fileName);
+      file = await file.text();
+    } catch (error) {
+      await console.error('Request failed', error);
+    }
+    return file;
+  }
+  async function splitText(content) {
+      return content.split(/\s+/);
+  }
+
+  async function accessText() {
+      try{
+          const words_a = await splitText(await getProcessedData('a.txt'));
+          const words_b = await splitText(await getProcessedData('b.txt'));
+
+          let i = 0;
+          while (i < words_a.length || i < words_b.length) {
+              const sliceOfA = "a: " +  words_a.slice(i, i + 7).join(' ');
+              const sliceOfB = " | b: "  + words_b.slice(i, i + 7).join(' ');
+
+              console.log( sliceOfA + sliceOfB);
+              i += 7;
+          }
+      } catch (error) {
+          console.error('Request failed', error);
+      }
+  }
+
+  accessText();
+
+</script>
+
+</body>
+</html>
