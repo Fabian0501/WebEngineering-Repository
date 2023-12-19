@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        let jsonData;
+        fetch('Realisierte_Erzeugung.json')
+            .then(response => response.json())
+            .then(data => {
+                jsonData = data;
+                console.log(jsonData);
+
+                const de = jsonData["Deutschland"];
+                updateBarHeight("d1", de["Biomasse"].data[1]);
+                updateBarHeight("d2", de["Wasserkraft"].data[1]);
+                updateBarHeight("d3", de["Wind Onshore"].data[1]);
+                updateBarHeight("d4", de["Photovoltaik"].data[1]);
+
+                const oe = jsonData["Österreich"];
+                updateBarHeight("o1", oe["Biomasse"].data[1]);
+                updateBarHeight("o2", oe["Wasserkraft"].data[1]);
+                updateBarHeight("o3", oe["Wind Onshore"].data[1]);
+                updateBarHeight("o4", oe["Photovoltaik"].data[1]);
+
+                const lu = jsonData["Luxemburg"];
+                updateBarHeight("l1", lu["Biomasse"].data[1]);
+                updateBarHeight("l2", lu["Wasserkraft"].data[1]);
+                updateBarHeight("l3", lu["Wind Onshore"].data[1]);
+                updateBarHeight("l5", lu["Photovoltaik"].data[1]);
+            })
+            .catch(error => {
+                console.error('Request failed', error);
+            });
+
+        function updateBarHeight(barId, value) {
+            const bar = document.getElementById(barId);
+            const maxHeight = 600;
+            bar.setAttribute("y", maxHeight - value);
+            bar.setAttribute("height", value);
+        }
+
+        function onHover(id) {
+            document.getElementById(id).style.fill = '#fffc63';
+        }
+        function activeGermany() {
+            onHover("d1"); onHover("d2"); onHover("d3");onHover("d4");
+        }
+        function activeAustria() {
+            onHover("o1"); onHover("o2"); onHover("o3");onHover("o4");
+        }
+        function activeLuxemburg() {
+            onHover("l1"); onHover("l2"); onHover("l3");onHover("l4");
+        }
+
+        function toggleBars(region, active) {
+            const regionBars = document.querySelectorAll(`[id^="${region}"]`); // ähnlich zu SQL LIKE '%d%'
+            regionBars.forEach(bar => {
+                if (!bar.hasAttribute('original-color')) {
+                    bar.setAttribute('original-color', bar.style.fill);
+                }
+
+                if (active) {
+                    bar.style.fill = '#fffc63';
+                } else {
+                    bar.style.fill = bar.getAttribute('original-color');
+                }
+            });
+        }
+
+
+    </script>
+</head>
+<body>
+<h1> Statistik-Balkendiagramm in SVG </h1>
+<svg width="800" height="800">
+    <a xlink:href="https://www.smard.de/home/downloadcenter/download-marktdaten/?downloadAttributes=%7B%22selectedCategory%22:1,%22selectedSubCategory%22:1,%22selectedRegion%22:%22LU%22,%22selectedFileType%22:%22CSV%22,%22from%22:1701990000000,%22to%22:1702940399999%7D" target="_blank">
+        <text x="0" y="15">Source: Marktdaten von der Bundesnetzagentur</text>
+    </a>
+
+    <!-- Balken für Wert 1 -->
+    <rect id="d1" x="150" y="500" width="20" height="100" class="bar" style="fill: #0083fc"
+          onmouseover="onHover(this.id)" onmouseout="this.style.fill = '#0083fc'"></rect>
+    <rect id="o1" x="175" y="500" width="20" height="100" class="bar" style="fill: #0066c9"
+          onmouseover="onHover(this.id)" onmouseout="this.style.fill = '#0066c9'"></rect>
+    <rect id="l1" x="200" y="500" width="20" height="100" class="bar" style="fill: #002496FF"
+          onmouseover="onHover(this.id)" onmouseout="this.style.fill = '#002496FF'"></rect>
+
+    <rect id="d2" x="250" y="500" width="20" height="100" class="bar" style="fill: #0083fc"
+          onmouseover="onHover(this.id)" onmouseout="this.style.fill = '#0083fc'"></rect>
+    <rect id="o2" x="275" y="500" width="20" height="100" class="bar" style="fill: #0066c9"
+          onmouseover="onHover(this.id)" onmouseout="this.style.fill = '#0066c9'"></rect>
+    <rect id="l2" x="300" y="500" width="20" height="100" class="bar" style="fill: #002496FF"
+          onmouseover="onHover(this.id)" onmouseout="this.style.fill = '#002496FF'"></rect>
+
+    <rect id="d3" x="350" y="500" width="20" height="100" class="bar" style="fill: #0083fc"
+          onmouseover="onHover(this.id)" onmouseout="this.style.fill = '#0083fc'"></rect>
+    <rect id="o3" x="375" y="500" width="20" height="100" class="bar" style="fill: #0066c9"
+          onmouseover="onHover(this.id)" onmouseout="this.style.fill = '#0066c9'"></rect>
+    <rect id="l3" x="400" y="500" width="20" height="100" class="bar" style="fill: #002496FF"
+          onmouseover="onHover(this.id)" onmouseout="this.style.fill = '#002496FF'"></rect>
+
+    <rect id="d4" x="450" y="500" width="20" height="100" class="bar" style="fill: #0083fc"
+          onmouseover="onHover(this.id)" onmouseout="this.style.fill = '#0083fc'"></rect>
+    <rect id="o4" x="475" y="500" width="20" height="100" class="bar" style="fill: #0066c9"
+          onmouseover="onHover(this.id)" onmouseout="this.style.fill = '#0066c9'"></rect>
+    <rect id="l4" x="500" y="500" width="20" height="100" class="bar" style="fill: #002496FF"
+          onmouseover="onHover(this.id)" onmouseout="this.style.fill = '#002496FF'"></rect>
+
+    <line x1="100" y1="600" x2="550" y2="600" style="stroke:rgb(0,0,0);stroke-width:2" />
+
+    <!-- Beschriftungen auf der X-Achse -->
+    <text x="150" y="620">Biomasse</text>
+    <text x="250" y="620">Wasserkraft</text>
+    <text x="340" y="620">Wind Onshore</text>
+    <text x="450" y="620">Photovoltaik</text>
+
+    <!-- Beschriftungen auf der Y-Achse -->
+    <text x="20" y="600">0 [MWh]</text>
+    <text x="20" y="560">500 [MWh]</text>
+    <text x="28" y="520">1k [MWh]</text>
+    <text x="28" y="480">2.5k [MWh]</text>
+    <text x="20" y="440">5k [MWh]</text>
+    <text x="20" y="400">10k [MWh]</text>
+    <text x="20" y="360">30k [MWh]</text>
+    <text x="15" y="320">40k [MWh]</text>
+    <text x="15" y="280">100k [MWh]</text>
+    <text x="15" y="200">400k [MWh]</text>
+
+    <line x1="100" y1="555" x2="550" y2="555" style="stroke:rgba(155,155,155,0.2);stroke-width:2" />
+    <line x1="100" y1="515" x2="550" y2="515" style="stroke:rgba(155,155,155,0.2);stroke-width:2" />
+    <line x1="100" y1="475" x2="550" y2="475" style="stroke:rgba(155,155,155,0.2);stroke-width:2" />
+    <line x1="100" y1="435" x2="550" y2="435" style="stroke:rgba(155,155,155,0.2);stroke-width:2" />
+    <line x1="100" y1="395" x2="550" y2="395" style="stroke:rgba(155,155,155,0.2);stroke-width:2" />
+    <line x1="100" y1="355" x2="550" y2="355" style="stroke:rgba(155,155,155,0.2);stroke-width:2" />
+    <line x1="100" y1="315" x2="550" y2="315" style="stroke:rgba(155,155,155,0.2);stroke-width:2" />
+    <line x1="100" y1="275" x2="550" y2="275" style="stroke:rgba(155,155,155,0.2);stroke-width:2" />
+    <line x1="100" y1="195" x2="550" y2="195" style="stroke:rgba(155,155,155,0.2);stroke-width:2" />
+
+
+    <circle cx="100" cy="650" r="5" style="fill: #0083fc"/>
+    <text id="d0" x="120" y="655" onmouseover="toggleBars('d', true)" onmouseout="toggleBars('d', false)"> Deutschland </text>
+
+    <circle cx="100" cy="680" r="5" style="fill: #0066c9"/>
+    <text id="o0" x="120" y="685" onmouseover="toggleBars('o', true)" onmouseout="toggleBars('o', false)"> Österreich </text>
+
+    <circle cx="100" cy="710" r="5" style="fill: #002496FF"/>
+    <text id="l0" x="120" y="715" onmouseover="toggleBars('l', true)" onmouseout="toggleBars('l', false)"> Luxemburg </text>
+
+</svg>
+
+
+</body>
+</html>
