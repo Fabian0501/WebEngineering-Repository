@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TicTacToe</title>
+    <style>
+        #feld {
+            margin-left: 600px;
+            margin-top: 200px;
+        }
+    </style>
+    <script defer>
+        let currentPlayer = 'x';
+        let gameActive = true;
+        let count = 9;
+
+        function createSVG(elem) {
+            if (!gameActive) return;
+
+            checkWinner();
+
+
+            if (elem.getAttribute('visited') === 'visitedx´' || elem.getAttribute('visited') === 'visitedy') {
+                return;
+            }
+
+            if (currentPlayer === 'x') {
+                elem.setAttribute('visited', 'visitedx');
+            }
+            if (currentPlayer === 'o') {
+                elem.setAttribute('visited', 'visitedo');
+            }
+
+            let feld = document.getElementById('feld');
+
+            if (currentPlayer === 'x') {
+                let line1 = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+                line1.setAttribute('x1', parseFloat(elem.getAttribute('x')) + 5);
+                line1.setAttribute('y1', parseFloat(elem.getAttribute('y')) + 5);
+                line1.setAttribute('x2', parseFloat(elem.getAttribute('x')) + parseFloat(elem.getAttribute('width')) - 5);
+                line1.setAttribute('y2', parseFloat(elem.getAttribute('y')) + parseFloat(elem.getAttribute('height')) - 5);
+                line1.setAttribute('style', 'stroke: #000000; stroke-width: 3;');
+
+                let line2 = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+                line2.setAttribute('x1', parseFloat(elem.getAttribute('x')) + 5);
+                line2.setAttribute('y1', parseFloat(elem.getAttribute('y')) + parseFloat(elem.getAttribute('height')) - 5);
+                line2.setAttribute('x2', parseFloat(elem.getAttribute('x')) + parseFloat(elem.getAttribute('width')) - 5);
+                line2.setAttribute('y2', parseFloat(elem.getAttribute('y')) + 5);
+                line2.setAttribute('style', 'stroke: #000000; stroke-width: 3;');
+
+                feld.appendChild(line1);
+                feld.appendChild(line2);
+                --count;
+
+
+            } else if (currentPlayer === 'o') {
+                let circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+                circle.setAttribute('cx', parseFloat(elem.getAttribute('x')) + parseFloat(elem.getAttribute('width')) / 2);
+                circle.setAttribute('cy', parseFloat(elem.getAttribute('y')) + parseFloat(elem.getAttribute('height')) / 2);
+                circle.setAttribute('r', '20');
+                circle.setAttribute('stroke', 'white');
+                circle.setAttribute('stroke-width', '3');
+                circle.setAttribute('fill', '#0066c9');
+
+                feld.appendChild(circle);
+                --count;
+
+            }
+
+            checkWinner();
+            currentPlayer = currentPlayer === 'x' ? 'o' : 'x';
+        }
+
+        function checkWinner() {
+            let a = document.getElementById("a1").getAttribute("visited"); //0
+            let b = document.getElementById("b1").getAttribute("visited"); //1
+            let c = document.getElementById("c1").getAttribute("visited"); //2
+            let d = document.getElementById("a2").getAttribute("visited"); //3
+            let e = document.getElementById("b2").getAttribute("visited"); //4
+            let f = document.getElementById("c2").getAttribute("visited"); //5
+            let g = document.getElementById("a3").getAttribute("visited"); //6
+            let h = document.getElementById("b3").getAttribute("visited"); //7
+            let i = document.getElementById("c3").getAttribute("visited"); //8
+
+            const winConditions = [
+                [a, b, c],
+                [d, e, f],
+                [g, h, i],
+                [a, d, g],
+                [b, e, h],
+                [c, f, i],
+                [a, e, i],
+                [c, e, g]
+            ];
+
+            for (let i = 0; i < winConditions.length; i++) {
+                const condition = winConditions[i];
+                console.log(condition[0], condition[1], condition[2]);
+                if (condition[0] === 'visitedx' && condition[1] === 'visitedx' && condition[2] === 'visitedx' ) {
+                    alert('Player x wins!');
+                    gameActive = false;
+                    return;
+                } else if (condition[0] === 'visitedo' && condition[1] === 'visitedo' && condition[2] === 'visitedo' ) {
+                    alert('Player o wins!');
+                    gameActive = false;
+                    return;
+                }else if (count === 0) {
+                    alert('Draw');
+                    gameActive = false;
+                    return;
+                }
+            }
+
+        }
+    </script>
+
+</head>
+
+<body>
+
+
+<svg id="feld" width="300" height="300">
+
+    <rect id="a1" x="0" y="0" width="90" height="90" style="fill: #ffffff" onclick="createSVG(this)" />
+    <rect id="a2" x="0" y="100" width="90" height="90" style="fill: #ffffff " onclick="createSVG(this)" />
+    <rect id="a3" x="0" y="200" width="90" height="90" style="fill: #ffffff" onclick="createSVG(this)" />
+    <rect id="b1" x="100" y="0" width="90" height="90" style="fill: #ffffff" onclick="createSVG(this)" />
+    <rect id="b2" x="100" y="100" width="90" height="90" style="fill: #ffffff" onclick="createSVG(this)" />
+    <rect id="b3" x="100" y="200" width="90" height="90" style="fill: #ffffff" onclick="createSVG(this)" />
+    <rect id="c1" x="200" y="0" width="90" height="90" style="fill: #ffffff" onclick="createSVG(this)" />
+    <rect id="c2" x="200" y="100" width="90" height="90" style="fill: #ffffff" onclick="createSVG(this)" />
+    <rect id="c3" x="200" y="200" width="90" height="90" style="fill: #ffffff" onclick="createSVG(this)" />
+
+    <line x1="100" y1="0" x2="100" y2="300" style="stroke: #000000; stroke-width: 5" />
+    <line x1="200" y1="0" x2="200" y2="300" style="stroke: #000000; stroke-width: 5" />
+    <line x1="0" y1="100" x2="300" y2="100" style="stroke: #000000; stroke-width: 5" />
+    <line x1="0" y1="200" x2="300" y2="200" style="stroke: #000000; stroke-width: 5" />
+</svg>
+</body>
+
+</html>
