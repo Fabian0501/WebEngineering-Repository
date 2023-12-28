@@ -1,3 +1,4 @@
+/* Idee: w3school */
 
 /**
  * öffnet die KalenderWochen sidebar und schiebt content auf der website nach rechts. <br>
@@ -81,5 +82,9 @@ function setActive(clickedElement) {
         tasks.classList.add("active");
         kw.classList.remove("active");
     }
+}
+
+function changeIframe(value) {
+    document.getElementById("iframe").setAttribute("src", value);
 }
 

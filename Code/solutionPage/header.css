@@ -1,9 +1,11 @@
 /* Quelle: w3school */
 
 #navbar {
+    margin-top: 5px;
     overflow: hidden;
     background-color: #f1f1f1;
     padding: 40px 10px;
+    border-radius: 20px;
     transition: 0.5s;
     position: fixed;
     width: 97.5vw;
@@ -25,6 +27,7 @@
 
 #navbar a:hover {
     background-color: #ddd;
+    border-radius: 15px;
     color: black;
     cursor: pointer;
 }
@@ -32,6 +35,7 @@
 
 #navbar a.active {
     background-color: dodgerblue;
+    border-radius: 15px;
     color: white;
 }
 
