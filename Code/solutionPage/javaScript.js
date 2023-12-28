@@ -8,7 +8,12 @@ function openKWSidebar() {
         closeTasksSidebar();
     }
     document.getElementById("sidebarKW").style.width = "200px";
+
     document.getElementById("navbar").style.marginLeft = "200px";
+    document.getElementById("navbar").style.width = "84.5vw";
+
+    document.getElementById("iframe").style.marginLeft = "200px";
+    document.getElementById("iframe").style.width = "1290px"; //1487
 }
 
 
@@ -18,8 +23,9 @@ function openKWSidebar() {
  */
 function closeKWSidebar() {
     document.getElementById("sidebarKW").style.width = "0";
-    document.getElementById("navbar").style.marginLeft = "0";
     document.getElementById("kw").classList.remove("active");
+    resetNavbar();
+    resetIframe();
 }
 
 
@@ -33,8 +39,12 @@ function openTasksSidebar() {
        closeKWSidebar();
     }
     document.getElementById("sidebarTasks").style.width = "300px";
-    document.getElementById("navbar").style.marginLeft = "300px";
 
+    document.getElementById("navbar").style.marginLeft = "300px";
+    document.getElementById("navbar").style.width = "78vw";
+
+    document.getElementById("iframe").style.marginLeft = "300px";
+    document.getElementById("iframe").style.width = "1190px";
 }
 
 /**
@@ -43,8 +53,18 @@ function openTasksSidebar() {
  */
 function closeTasksSidebar() {
     document.getElementById("sidebarTasks").style.width = "0";
-    document.getElementById("navbar").style.marginLeft = "0";
     document.getElementById("tasks").classList.remove("active");
+    resetNavbar();
+    resetIframe();
+}
+
+function resetNavbar() {
+    document.getElementById("navbar").style.marginLeft = "0";
+    document.getElementById("navbar").style.width = "97.5vw";
+}
+function resetIframe() {
+    document.getElementById("iframe").style.marginLeft = "0";
+    document.getElementById("iframe").style.width = "1490px";
 }
 
 /**
@@ -62,3 +82,4 @@ function setActive(clickedElement) {
         kw.classList.remove("active");
     }
 }
+

@@ -12,6 +12,27 @@
             background-color: #ffffff;
             font-family: 'Roboto', sans-serif;
         }
+        iframe {
+            border: 2px solid red;
+            border-radius: 20px;
+            height: 600px;
+            width: 1490px;
+            margin-top: 200px;
+            transition: 0.5s;
+        }
+        .container {
+            display: flex;
+            margin-top: 40px;
+            margin-left: 13px;
+        }
+        .container_left {
+            flex: 2; /* um die Breite zu teilen */
+            font-size: 40px;
+        }
+        .container_right {
+            flex: 1;
+        }
+
     </style>
 </head>
 
@@ -19,7 +40,7 @@
 
 <div id="sidebarKW" class="sidebar">
     <a class="closebtn" onclick="closeKWSidebar()">×</a>
-    <a href="#">41</a>
+    <a href="kw41/kw41_1.7.html">41</a>
     <a href="#">42</a>
     <a href="#">43</a>
     <a href="#">44</a>
@@ -36,16 +57,23 @@
 </div>
 
 <div id="navbar">
-    <h1 style="margin-left: 20px;">Solution Navigator</h1>
+
+    <div class="container">
+        <div class="container_left">Solution Navigator</div>
+        <div class="container_right">Div 2</div>
+    </div>
+
+
     <div id="navbar-right">
         <a id="kw" onclick="openKWSidebar(); setActive(this)"> <b style="font-size: 30px;">☰</b> Kalender Wochen</a>
         <a id="tasks" onclick="openTasksSidebar(); setActive(this)"> <b style="font-size: 30px;">☰</b> Wichtige Tasks</a>
     </div>
+
 </div>
 
 
-<!-- hier muss ein tiv hin in dem die nächten elmenete drinne sind mit einem margin-top == height of header sodass text erst nach header -->
-
+<!-- hier muss ein div hin in dem die nächten elmenete drinne sind mit einem margin-top == height of header sodass text erst nach header -->
+<iframe id="iframe" src="kw41/kw41_1.7.html"></iframe>
 
 
 </body>
