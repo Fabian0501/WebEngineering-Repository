@@ -9,6 +9,19 @@
             padding: 10px;
             margin-top: 20px;
         }
+        #calculateButton {
+            border-radius: 10px;
+            padding: 15px;
+            background-color: rgba(87,174,255, 20%);
+            border: none;
+        }
+        #inputField {
+            margin-left: 10px;
+            font-size: 15px;
+            padding: 12px;
+            border-radius: 10px;
+            border: solid #57AEFF33;
+        }
     </style>
 
     <script>
@@ -37,11 +50,11 @@
                     let newRow = document.createElement('tr');
 
                     newLeft = document.createElement('td');
-                    newLeft.style.border = "solid #0066c9";
+                    newLeft.style.border = "solid #57AEFF33";
                     newLeft.style.padding = "5px";
 
                     newRight = document.createElement('td');
-                    newRight.style.border = "solid #0066c9";
+                    newRight.style.border = "solid #57AEFF33";
                     newRight.style.padding = "5px";
 
                     newLeft.textContent = i.toString();
@@ -71,7 +84,7 @@
 
 <h2>Visualisation of Fibonacci</h2>
 <section>
-    <label for="inputField">Enter a Number</label>
+    <label for="inputField" style="font-size: 20px; margin-left: 10px;">Enter a Number</label>
     <input type="text" id="inputField" placeholder="5">
     <button id="calculateButton">Calculate Fibonacci</button>
     <table id="table"></table>
