@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Fibonacci</title>
+    <style>
+        #table {
+            width: 300px;
+            padding: 10px;
+            margin-top: 20px;
+        }
+    </style>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            function generateFib(value) {
+                const fibTable = [0n, 1n];
+                for (let i = 2; i <= value; i++) {
+                    fibTable[i] = fibTable[i - 1] + fibTable[i - 2];
+                }
+
+                const table = document.getElementById('table');
+                table.style.border = "solid #0066c9";
+                table.innerHTML = ''; // vorherige Werte löschen
+
+                let newLeft = document.createElement('td');
+                newLeft.textContent = "Fibonacci";
+
+                let newRight = document.createElement('td');
+                newRight.textContent = "value";
+
+                let firstRow = document.createElement('tr');
+                firstRow.appendChild(newLeft);
+                firstRow.appendChild(newRight);
+                table.appendChild(firstRow);
+
+                for (let i = 0; i < fibTable.length; i++) {
+                    let newRow = document.createElement('tr');
+
+                    newLeft = document.createElement('td');
+                    newLeft.style.border = "solid #0066c9";
+                    newLeft.style.padding = "5px";
+
+                    newRight = document.createElement('td');
+                    newRight.style.border = "solid #0066c9";
+                    newRight.style.padding = "5px";
+
+                    newLeft.textContent = i.toString();
+                    newRight.textContent = fibTable[i].toString();
+
+                    newRow.appendChild(newLeft);
+                    newRow.appendChild(newRight);
+                    table.appendChild(newRow);
+                }
+            }
+
+            document.getElementById('calculateButton').addEventListener('click', function() {
+                const inputValue = document.getElementById('inputField').value;
+                const inputNumber = parseInt(inputValue);
+
+                if (!isNaN(inputNumber) && inputNumber >= 0) {
+                    generateFib(inputNumber);
+                } else {
+                    alert('Bitte geben Sie eine gültige positive Zahl ein.');
+                }
+            });
+        });
+
+    </script>
+</head>
+<body>
+
+<h2>Visualisation of Fibonacci</h2>
+<section>
+    <label for="inputField">Enter a Number</label>
+    <input type="text" id="inputField" placeholder="5">
+    <button id="calculateButton">Calculate Fibonacci</button>
+    <table id="table"></table>
+</section>
+
+</body>
+</html>
