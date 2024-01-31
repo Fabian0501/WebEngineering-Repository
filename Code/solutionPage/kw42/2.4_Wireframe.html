@@ -19,7 +19,7 @@
         }
         .left_item {
             float: left;
-            width: 64%;
+            width: 60%;
         }
         .right_item {
             float: left;
@@ -36,7 +36,30 @@
         body {
             background-color: #a9d7d1;
             font-family: 'Roboto', sans-serif;
+        }
 
+        @media screen and (max-width: 800px) {
+            .left_item {
+                width: 55%;
+            }
+            .rounded-box {
+                width: 700px;
+            }
+        }
+        @media screen and (max-width: 700px) {
+            .rounded-box {
+                width: 600px;
+            }
+        }
+        @media screen and (max-width: 600px) {
+            .rounded-box {
+                width: 500px;
+            }
+        }
+        @media screen and (max-width: 500px) {
+            .rounded-box {
+                width: 400px;
+            }
         }
     </style>
 </head>
