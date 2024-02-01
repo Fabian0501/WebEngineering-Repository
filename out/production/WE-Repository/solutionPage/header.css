@@ -1,4 +1,4 @@
-/* Inspiriert : w3school */
+/* Quelle: w3school */
 
 #navbar {
     margin-top: 5px;
@@ -6,9 +6,9 @@
     background-color: #f1f1f1;
     padding: 40px 10px;
     border-radius: 20px;
-    transition: 0.4s;
+    transition: 0.5s;
     position: fixed;
-    width: 98vw;
+    width: 97.5vw;
     top: 0;
     z-index: 99;
     cursor: default;
@@ -18,10 +18,10 @@
     float: left;
     color: black;
     text-align: center;
-    padding: 8px;
+    padding: 12px;
     text-decoration: none;
     font-size: 18px;
-    line-height: 20px;
+    line-height: 25px;
     border-radius: 4px;
 }
 
@@ -44,43 +44,22 @@
     top: 0;
     margin-top: 10px;
 }
+
 @media screen and (max-width: 1400px){
     #navbar {
-        width: 97vw !important;
+        width: 95vw;
     }
 }
-@media screen and (max-width: 1100px){
-    #navbar {
-        width: 96.5vw !important;
-    }
-}
-@media screen and (max-width: 950px){
-    #navbar {
-        width: 95.5vw !important;
-    }
-}
-@media screen and (max-width: 750px){
-    #navbar {
-        width: 94.5vw !important;
-    }
-}
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 600px) {
     #navbar {
         padding: 20px 10px !important;
     }
     #navbar a {
+        /*float: none;*/
         display: block;
         text-align: left;
-        padding: 8px;
-        font-size: 15px;
-        line-height: 12px;
     }
     #navbar-right {
         float: none;
-    }
-}
-@media screen and (max-width: 650px){
-    #navbar {
-        width: 93.5vw;
     }
 }

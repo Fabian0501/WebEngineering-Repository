@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>WWW navi</title>
+
+    <link rel="stylesheet" href="header.css">
+    <link rel="stylesheet" href="sidebar.css">
+    <script src="javaScript.js"></script>
+    <style>
+        body {
+            background-color: #ffffff;
+            font-family: 'Roboto', sans-serif;
+        }
+    </style>
+</head>
+<body>
+<script>
+    let jsonData;
+    fetch('navigator_data.json')
+        .then(response => {
+            return response.json();
+        })
+        .then(data => {
+            jsonData = data;
+            console.log(jsonData);
+        })
+        .catch(error => {
+            console.error('Request failed', error);
+        });
+</script>
+<div id="sidebarHTML" class="sidebar">
+    <a class="closebtn" onclick="closeHTMLSidebar()">×</a>
+    <a id="headings" onclick="showHTMLHeading()">headings</a>
+    <a id="paragraph" onclick="showHTMLParagraph()">paragraph</a>
+</div>
+<div id="sidebarCSS" class="sidebar">
+    <a class="closebtn" onclick="closeCSSSidebar()">×</a>
+    <a id="selectors" onclick="showCSSSelectors()">selectors</a>
+    <a id="colors" onclick="showCSSColors()">colors</a>
+</div>
+<div id="sidebarJavascript" class="sidebar">
+    <a class="closebtn" onclick="closeJavascriptSidebar()">×</a>
+    <a id="function" onclick="showJavascriptFunction()">function</a>
+    <a id="object" onclick="showJavascriptObject()">object</a>
+</div>
+<div id="navbar">
+    <h1 style="margin-left: 20px;">WWW Navigator</h1>
+    <div id="navbar-right">
+        <a id="html" onclick="openHTMLSidebar(); setActive(this)"> <b style="font-size: 30px;">☰</b> HTML</a>
+        <a id="css" onclick="openCSSSidebar(); setActive(this)"> <b style="font-size: 30px;">☰</b> CSS</a>
+        <a id="javascript" onclick="openJavascriptSidebar(); setActive(this)"> <b style="font-size: 30px;">☰</b> JavaScript</a>
+    </div>
+</div>
+<div id="textField" style="margin-top: 300px">
+    <ul id="list"><li> </li></ul>
+    <script>
+        const list = document.getElementById('list');
+        function clearList() {
+            list.innerHTML = '';
+        }
+        function showHTMLHeading(){
+            clearList();
+            const newItem = document.createElement('li');
+            newItem.textContent = jsonData.html.headings.content;
+            list.appendChild(newItem);
+        }
+        function showHTMLParagraph() {
+            clearList();
+            const newItem = document.createElement('li');
+            newItem.textContent = jsonData.html.paragraph.content;
+            list.appendChild(newItem);
+        }
+        function showCSSSelectors() {
+            clearList();
+            const newItem = document.createElement('li');
+            newItem.textContent = jsonData.css.selectors.content;
+            list.appendChild(newItem);
+        }
+        function showCSSColors() {
+            clearList();
+            const newItem = document.createElement('li');
+            newItem.textContent = jsonData.css.colors.content;
+            list.appendChild(newItem);
+        }
+        function showJavascriptFunction() {
+            clearList();
+            const newItem = document.createElement('li');
+            newItem.textContent = jsonData.javascript.function.content;
+            list.appendChild(newItem);
+        }
+        function showJavascriptObject() {
+            clearList();
+            const newItem = document.createElement('li');
+            newItem.textContent = jsonData.javascript.object.content;
+            list.appendChild(newItem);
+        }
+    </script>
+</div>
+</body>
+</html>

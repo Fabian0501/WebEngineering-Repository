@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script>
+        const a = document.createElement('test');
+        let string = 'This element contains <code>code</code>\n' + '<p><strong>and HTML tags</strong></p>'
+
+        let start = performance.now();
+        for (let i = 0; i < 10_000; i++) {
+            document.head.appendChild(a);
+            a.innerHTML = string;
+        }
+        let end = performance.now();
+        let diff = (end - start) / 10_000;
+
+
+        start = performance.now();
+        for (let i = 0; i < 10_000; i++) {
+            document.head.appendChild(a);
+            a.innerText = string;
+        }
+        end = performance.now();
+        let diff2 = (end - start) / 10_000;
+
+
+        start = performance.now();
+        for (let i = 0; i < 10_000; i++) {
+            document.head.appendChild(a);
+            a.textContent = string;
+        }
+        end = performance.now();
+        let diff3 = (end - start) / 10_000;
+
+
+        start = performance.now();
+        for (let i = 0; i < 10_000; i++) {
+            document.head.appendChild(a);
+            a.outerHTML = string;
+        }
+        end = performance.now();
+        let diff4 = (end - start) / 10_000;
+
+        console.table({
+            'innerHTML': diff,
+            'innerText': diff2,
+            'textContent': diff3,
+            'outerHTML': diff4
+        });
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>Homepage</title>
-
     <link rel="stylesheet" href="header.css">
     <link rel="stylesheet" href="sidebar.css">
     <script src="javaScript.js"></script>
@@ -11,58 +10,77 @@
         body {
             background-color: #ffffff;
             font-family: 'Roboto', sans-serif;
+            display: flex;
         }
         iframe {
+            margin-top: 200px;
+            margin-left: 15px;
             /*border: 2px solid red;*/
             border: none;
             border-radius: 20px;
-            height: 630px;
-            width: 1490px;
-            margin-top: 175px;
+            height: 780px;
+            width: 98vw;
+            display: none;
             transition: 0.5s;
         }
-        .container {
-            display: flex;
+        #title {
             margin-top: 40px;
-            margin-left: 13px;
-        }
-        .container_left {
-            flex: 2; /* um die Breite aufzuteilen in sections */
+            margin-left: 15px;
             font-size: 40px;
         }
-        .container_right {
-            flex: 1;
+        #image {
+            width :2000px;
+            height : 700px;
+            margin-top: 230px;
+            transition: 0.5s;
         }
-
+        @media screen and (max-width: 900px) {
+            #image {
+                width: 1700px;
+                height: 550px;
+                transition: 0.5s;
+            }
+        }
+        @media screen and (max-width: 700px) {
+            #iframe {
+                margin-top:160px;
+                height: 810px;
+            }
+            #image {
+                width: 1500px;
+                height: 400px;
+                transition: 0.5s;
+            }
+        }
     </style>
-
 </head>
 
 <body>
 
+
 <div id="sidebarKW" class="sidebar">
     <a class="closebtn" onclick="closeKWSidebar()">×</a>
-    <a onclick="changeIframe('kw41/kw41_1.7.html')">
+    <a onclick="changeIframe('kw41/kw41_1.7.html'); showHome()">
         1.7
         <img src='https://kaul.inf.h-brs.de/ccm/we/ws23/resources/img/icons/exam.svg' style="width: 20px;"
              alt="picture can't loaded">
     </a>
-    <a onclick="changeIframe('kw42/2.4_Wireframe.html')">
+    <a onclick="changeIframe('kw42/2.4_Wireframe.html'); showHome()">
         2.4
         <img src='https://kaul.inf.h-brs.de/ccm/we/ws23/resources/img/icons/exam.svg' style="width: 20px;"
              alt="picture can't loaded">
     </a>
 
-    <a onclick="changeIframe('kw43/wireframe.html')">3.3</a>
+    <a onclick="changeIframe('kw43/mobileFirst.html'); showHome()">3.3</a>
 
-    <a onclick="changeIframe('kw44/4.3Fibonacci.html')">4.3</a>
+    <a onclick="changeIframe('kw44/4.3Fibonacci.html'); showHome()">4.3</a>
 
-    <a onclick="changeIframe('kw46/rednerListe.html')">
+    <a onclick="changeIframe('kw46/rednerListe.html'); showHome()">
         5.2
         <img src='https://kaul.inf.h-brs.de/ccm/we/ws23/resources/img/icons/exam.svg' style="width: 20px;"
              alt="picture can't loaded">
     </a>
-    <a onclick="changeIframe('kw47/klammerPaare.html')">
+    <a onclick="changeIframe('kw47/klammerPaare.html'); showHome()">
         6.1
         <img src='https://kaul.inf.h-brs.de/ccm/we/ws23/resources/img/icons/exam.svg' style="width: 20px;"
              alt="picture can't loaded">
@@ -78,24 +96,21 @@
 </div>
 
 <div id="navbar">
-
-    <div class="container">
-        <div class="container_left">Solution Navigator</div>
-        <div class="container_right">Div 2</div>
-    </div>
-
-
     <div id="navbar-right">
         <a id="kw" style="margin-top: 5px;" onclick="openKWSidebar(); setActive(this)"> <b style="font-size: 30px;">☰</b> Tasks as Iframes </a>
         <a id="tasks" style="margin-left: 5px; margin-top: 5px;" onclick="openTasksSidebar(); setActive(this)"> <b style="font-size: 30px;">☰</b>Tasks as ref</a>
+        <a id="home" style=" margin-left: 5px; margin-top: 9px; pointer-events: none" onclick="goHome()"> </a>
     </div>
 
+    <div class="changeableTitle" id="title">Solution Navigator</div>
 </div>
 
 
-<!-- hier muss ein div hin in dem die nächten elmenete drinne sind mit einem margin-top == height of header sodass text erst nach header -->
-<iframe id="iframe"></iframe>
 
+<!-- hier muss ein div hin in dem die nächten elmenete drinne sind mit einem margin-top == height of header sodass text erst nach header -->
+<img id="image" src="vecteezy_analyzing-password-and-security_4578987.svg"> <!--QUELLE: INTERNET-->
+
+<iframe id="iframe"> </iframe>
 
 </body>
 </html>

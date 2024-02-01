@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+
+  function add(a,b) {
+    return a+b;
+  }
+  function mul(a,b) {
+      return a*b;
+  }
+  function curry(fct, a) {
+    return function (b) {
+      return fct(a,b);
+    }
+  }
+  add3 = curry(add, 3);
+  console.log(add3(4));
+
+  mul3 = curry(mul,3);
+  console.log((mul3(10)));
+
+
+
+  function methodize(binaryFunction) {
+      return function (x) {
+          return binaryFunction(this, x);
+      };
+  }
+
+  Number.prototype.add = methodize(add);
+  Number.prototype.mul = methodize(mul);
+
+  const resultUnaryAdd = (3).add(4);
+  console.log(resultUnaryAdd);
+
+  const resultUnaryMul = (5).mul(6);
+  console.log(resultUnaryMul);
+
+
+
+
+  function demethodize(unaryMethod) {
+      return function (a, b) {
+          return unaryMethod.call(a, b); // a wird this zugewiesen und ermöglicht so a.unaryMethod(b) und unaryMethod(a,b)
+      }
+  }
+
+  const binaryAdd = demethodize(Number.prototype.add)(5, 6);
+  console.log(binaryAdd);
+
+  const binaryMul = demethodize(Number.prototype.mul)(3, 4);
+  console.log(binaryMul);
+
+
+
+
+
+  function twice(binaryMethod) {
+      return function (x) {
+          return binaryMethod(x,x);
+      }
+  }
+
+  const double = twice(add);
+  console.log(double(11));
+
+  const square = twice(mul);
+  console.log(square(11));
+
+
+
+  //composeu(double, square)(3) genau 36 ergeben.
+  function composeu(fct1,fct2) {
+      return function (x) {
+          return fct2(fct1(x), x);
+      }
+  }
+  console.log(composeu(double,square)(3));
+
+
+  //composeb(add, mul)(2, 3, 5) soll 25
+  function composeb(fct1, fct2) {
+      return function (x,y,z) {
+          return fct2(fct1(x,y), z);
+      }
+  }
+  console.log(composeb(add, mul)(2, 3, 5));
+
+
+  function once(fct) {
+      let isCalled = false;
+      return function (a,b) {
+          if (! isCalled) {
+              isCalled = true;
+              return fct(a,b);
+          }else {
+              throw new Error('Die Funktion darf nur einmal aufgerufen werden.');
+          }
+      }
+  }
+  add_once = once(add);
+  console.log(add_once(3, 4));
+  //console.log(add_once(4,5)); // fehler
+
+
+
+  function counterf(initialValue) {
+      let count = initialValue;
+
+      return {
+          inc: function (){return count++;}
+          ,
+          dec: function () { return count--;}
+      }
+  }
+
+  const counter = counterf(10);
+
+  console.log(counter.inc());
+  console.log(counter.dec());
+  console.log(counter.inc());
+
+
+
+  function revocable(fct) {
+      let isRevoked = false;
+
+      return {
+          invoke : function (a) {
+              if (! isRevoked) {
+                  return fct(a);
+              } else {
+                  throw new Error('Die Funktion wurde zurück gerufen');
+              }
+          }
+          ,
+          revoke : function () {
+              isRevoked = true;
+          }
+      }
+  }
+
+  temp = revocable(alert);
+  temp.invoke(7); // führt zu alert(7);
+  temp.revoke();
+  //temp.invoke(8); // Fehlerabbruch!
+
+
+
+  let vector = (function () {
+      let array = [];
+
+      return {
+          get: function (pos) {
+              return array[pos];
+          },
+          store: function (pos, value) {
+              array[pos] = value;
+          },
+          append: function (value) {
+              array.push(value);
+          }
+      };
+  })();
+
+  let my_vector = vector;
+  my_vector.append(7);
+  my_vector.store(1, 8);
+  console.log(my_vector.get(0));
+  console.log(my_vector.get(1));
+
+</script>
+
+</body>
+</html>

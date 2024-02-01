@@ -1,45 +1,112 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>Homepage</title>
 
-    <link rel="stylesheet" href="navigationBar.css">
-
+    <link rel="stylesheet" href="header.css">
+    <link rel="stylesheet" href="sidebar.css">
+    <script src="javaScript.js"></script>
     <style>
         body {
             background-color: #ffffff;
             font-family: 'Roboto', sans-serif;
+            display: flex;
+        }
+        iframe {
+            border: 2px solid red;
+            /*border: none;*/
+            border-radius: 20px;
+            height: 800px;
+            width: 1770px;
+            margin-top: 175px;
+            transition: 0.5s;
+        }
+        .container {
+            display: flex;
+            margin-top: 40px;
+            margin-left: 13px;
+        }
+        .container_left {
+            flex: 2; /* um die Breite aufzuteilen in sections */
+            font-size: 40px;
+        }
+        .container_right {
+            flex: 1;
+            font-size: 20px;
+        }
+        @media screen and (max-width: 600px) {
+            .container {
+                display: block;
+                margin-top: 20px;
+                padding: 20px 10px !important
+            }
+            #changeDiv {
+                  margin-top: 20px;
+            }
+            #iframe {
+                margin-top: 200px;
+            }
         }
     </style>
 </head>
 
 <body>
-<div align="center">
-    <div class="headerCenter" align="center">
-        <h1 align="center"><b>Solution Page</b></h1>
+
+
+<div id="sidebarKW" class="sidebar">
+    <a class="closebtn" onclick="closeKWSidebar()">×</a>
+    <a onclick="changeIframe('kw41/kw41_1.7.html')">
+        1.7
+        <img src='https://kaul.inf.h-brs.de/ccm/we/ws23/resources/img/icons/exam.svg' style="width: 20px;"
+             alt="picture can't loaded">
+    </a>
+    <a onclick="changeIframe('kw42/2.4_Wireframe.html')">
+        2.4
+        <img src='https://kaul.inf.h-brs.de/ccm/we/ws23/resources/img/icons/exam.svg' style="width: 20px;"
+             alt="picture can't loaded">
+    </a>
+
+    <a onclick="changeIframe('kw43/wireframe.html')">3.3</a>
+
+    <a onclick="changeIframe('kw44/4.3Fibonacci.html')">4.3</a>
+
+    <a onclick="changeIframe('kw46/rednerListe.html')">
+        5.2
+        <img src='https://kaul.inf.h-brs.de/ccm/we/ws23/resources/img/icons/exam.svg' style="width: 20px;"
+             alt="picture can't loaded">
+    </a>
+    <a onclick="changeIframe('kw47/klammerPaare.html')">
+        6.1
+        <img src='https://kaul.inf.h-brs.de/ccm/we/ws23/resources/img/icons/exam.svg' style="width: 20px;"
+             alt="picture can't loaded">
+    </a>
+</div>
+
+<div id="sidebarTasks" class="sidebar">
+    <a class="closebtn" onclick="closeTasksSidebar()">×</a>
+    <a href="#">1.7 Wireframe</a>
+    <a href="#">2.1 GitHub</a>
+    <a href="#">2.4 Wireframe</a>
+    <a href="#">coming soon</a>
+</div>
+
+<div id="navbar">
+    <div id="navbar-right">
+        <a id="kw" style="margin-top: 5px;" onclick="openKWSidebar(); setActive(this)"> <b style="font-size: 30px;">☰</b> Tasks as Iframes </a>
+        <a id="tasks" style="margin-left: 5px; margin-top: 5px;" onclick="openTasksSidebar(); setActive(this)"> <b style="font-size: 30px;">☰</b>Tasks as ref</a>
+    </div>
+
+    <div class="container">
+        <div class="container_left" id="title">Solution Navigator</div>
+        <div class="container_right" id="changeDiv">Herzlich Willkommen</div>
     </div>
 </div>
-<br>
 
-<div class="flex-container">
-    <div class="dropdown">
-        <button class="dropbtn">Kalender Woche</button>
-        <div class="dropdown-content">
-            <a href="#">41</a>
-            <a href="#">42</a>
-            <a href="#">43</a>
-        </div>
-    </div>
 
-    <div class="dropdown">
-        <button class="dropbtn">Klausurrelevenate Aufgaben</button>
-        <div class="dropdown-content">
-            <a href="kw41/kw41_1.7.html">1.7 HTML-Wireframe</a>
-            <a href="kw42/2.4_Wireframe.html">2.4 Wireframe mit HTML und CSS</a>
-        </div>
-    </div>
-</div>
+<!-- hier muss ein div hin in dem die nächten elmenete drinne sind mit einem margin-top == height of header sodass text erst nach header -->
+
+<iframe id="iframe" src="webEngineering.jpeg"> </iframe>
 
 </body>
 </html>

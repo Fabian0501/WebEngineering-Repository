@@ -7,8 +7,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
     <style>
         .rounded-box {
-            width: 90dvh;
-            height: 65vh;
+            width: 800px;
+            height: 550px;
             background-color: snow;
             border-radius: 20px 20px 0 0;
             margin: auto;
@@ -19,7 +19,7 @@
         }
         .left_item {
             float: left;
-            width: 64%;
+            width: 60%;
         }
         .right_item {
             float: left;
@@ -36,7 +36,34 @@
         body {
             background-color: #a9d7d1;
             font-family: 'Roboto', sans-serif;
+        }
 
+        @media screen and (max-width: 800px) {
+            .left_item {
+                width: 55%;
+            }
+            .rounded-box {
+                width: 700px;
+                transition: 0.5s;
+            }
+        }
+        @media screen and (max-width: 700px) {
+            .rounded-box {
+                width: 600px;
+                transition: 0.5s;
+            }
+        }
+        @media screen and (max-width: 600px) {
+            .rounded-box {
+                width: 500px;
+                transition: 0.5s;
+            }
+        }
+        @media screen and (max-width: 500px) {
+            .rounded-box {
+                width: 400px;
+                transition: 0.5s;
+            }
         }
     </style>
 </head>

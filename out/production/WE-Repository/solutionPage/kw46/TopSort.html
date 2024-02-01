@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TopSort</title>
+</head>
+<body>
+
+<script>
+  class Graph {
+    constructor(V) {
+      this.V = V;
+      this.adj = new Array(V).fill(null).map(() => []);
+    }
+
+    addEdge(v, w) {
+      this.adj[v].push(w);
+    }
+
+    topologicalSortUtil(v, visited, stack) {
+      visited[v] = true;
+
+      for (const neighbor of this.adj[v]) {
+        if (!visited[neighbor]) {
+          this.topologicalSortUtil(neighbor, visited, stack);
+        }
+      }
+
+      stack.push(v);
+    }
+
+    topologicalSort() {
+      const stack = [];
+
+      const visited = new Array(this.V).fill(false);
+
+      for (let i = 0; i < this.V; i++) {
+        if (!visited[i]) {
+          this.topologicalSortUtil(i, visited, stack);
+        }
+      }
+
+      while (stack.length !== 0) {
+        console.log(stack.pop() + " ");
+      }
+    }
+  }
+
+  // Driver Code
+  const g = new Graph(6);
+  g.addEdge(5, 2);
+  g.addEdge(5, 0);
+  g.addEdge(4, 0);
+  g.addEdge(4, 1);
+  g.addEdge(2, 3);
+  g.addEdge(3, 1);
+
+  console.log("Following is a Topological Sort of the given graph:");
+  g.topologicalSort();
+
+</script>
+
+</body>
+</html>

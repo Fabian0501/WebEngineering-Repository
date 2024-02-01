@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SVG Grafik</title>
+    <style>
+        .svg-container {
+            margin-left: 400px;
+            width: 500px;
+            height: 580px;
+            margin-top: 100px;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .svg-container:hover {
+            transform: scale(2);
+        }
+    </style>
+</head>
+<body>
+<div class="svg-container">
+    <svg width="500" height="580">
+        <rect x="0" y="0" width="500" height="580" style="fill:rgb(195,117,136);" />
+        <line x1="50" y1="150" x2="450" y2="150" style="stroke:rgb(255,255,255);stroke-width:5" />
+        <text x="60" y="140" fill="white" font-size="100">Use</text>
+
+        <line x1="50" y1="300" x2="450" y2="300" style="stroke:rgb(255,255,255);stroke-width:5" />
+        <text x="60" y="290" fill="white" font-size="100">The</text>
+
+        <line x1="50" y1="450" x2="450" y2="450" style="stroke:rgb(255,255,255);stroke-width:5" />
+        <text x="60" y="440" fill="white" font-size="100">Platform</text>
+    </svg>
+</div>
+</body>
+</html>

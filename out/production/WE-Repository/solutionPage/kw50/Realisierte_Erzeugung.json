@@ -1,0 +1,44 @@
+{
+  "Deutschland": {
+    "Biomasse": {
+      "data": ["01.11.2023","107.066"]
+    },
+    "Wasserkraft": {
+      "data": ["01.11.2023","41.933"]
+    },
+    "Wind Onshore": {
+      "data": ["01.11.2023","415.761"]
+    },
+    "Photovoltaik": {
+      "data": ["01.11.2023","94.850"]
+    }
+  },
+  "Österreich": {
+    "Biomasse": {
+      "data": ["01.11.2023","4.144"]
+    },
+    "Wasserkraft": {
+      "data": ["01.11.2023","89.263"]
+    },
+    "Wind Onshore": {
+      "data": ["01.11.2023","33.322"]
+    },
+    "Photovoltaik": {
+      "data": ["01.11.2023","5.939"]
+    }
+  },
+  "Luxemburg": {
+    "Biomasse": {
+      "data": ["01.11.2023","313"]
+    },
+    "Wasserkraft": {
+      "data": ["01.11.2023","218"]
+    },
+    "Wind Onshore": {
+      "data": ["01.11.2023","2.677"]
+    },
+    "Photovoltaik": {
+      "data": ["01.11.2023","365"]
+    }
+  }
+}

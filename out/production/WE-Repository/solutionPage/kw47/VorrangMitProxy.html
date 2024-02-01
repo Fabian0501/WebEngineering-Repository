@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vorrang mit Proxy</title>
+</head>
+<body>
+
+<script>
+    class Vorrang {
+        constructor(relations) {
+            this.graph = new Map();
+            this.inDegrees = new Map();
+            this.queue = [];
+
+            relations.forEach(([parent, child]) => {
+                this.graph.set(parent, (this.graph.get(parent) || new Set()).add(child));
+                this.inDegrees.set(child, (this.inDegrees.get(child) || 0) + 1);
+                this.inDegrees.set(parent, this.inDegrees.get(parent) || 0);
+            });
+
+            Array.from(this.inDegrees.keys()).forEach(node => {
+                if (this.inDegrees.get(node) === 0) this.queue.push(node);
+            });
+
+            // Proxy für das Logging
+            this.proxy = new Proxy(this, {
+                get: function (target, prop) {
+                    const originalMethod = target[prop];
+                    if (typeof originalMethod === 'function') {
+                        // Wenn es eine Funktion ist, wird ein neues Wrapper-Log Funktion erstellt.
+                        return function (...args) {
+                            const result = originalMethod.apply(target, args);
+                            console.log(`Logging: Remaining relations - ${relations.length}`);
+                            return result;
+                        };
+                    } else {
+                        return originalMethod;
+                    }
+                }
+            });
+        }
+
+        *topologicalGenerator() {
+            while (this.queue.length > 0) {
+                const node = this.queue.shift();
+                if (this.graph.has(node)) {
+                    for (const neighbor of this.graph.get(node)) {
+                        this.inDegrees.set(neighbor, this.inDegrees.get(neighbor) - 1);
+                        if (this.inDegrees.get(neighbor) === 0) this.queue.push(neighbor);
+                    }
+                }
+                yield node;
+            }
+        }
+
+        [Symbol.iterator]() {
+            return this.topologicalGenerator();
+        }
+    }
+
+    const vorrangMitLogging = new Vorrang([
+        ["schlafen", "studieren"],
+        ["essen", "studieren"],
+        ["studieren", "prüfen"]
+    ]);
+
+    const resultMitLogging = Array.from(vorrangMitLogging);
+    console.assert(JSON.stringify(resultMitLogging) === JSON.stringify(["schlafen", "essen", "studieren", "prüfen"]), 'Test mit Logging fehlgeschlagen!');
+</script>
+
+</body>
+</html>
