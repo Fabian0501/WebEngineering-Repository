@@ -17,9 +17,6 @@
         function createSVG(elem) {
             if (!gameActive) return;
 
-            checkWinner();
-
-
             if (elem.getAttribute('visited') === 'visitedx´' || elem.getAttribute('visited') === 'visitedy') {
                 return;
             }
@@ -30,6 +27,7 @@
             if (currentPlayer === 'o') {
                 elem.setAttribute('visited', 'visitedo');
             }
+
 
             let feld = document.getElementById('feld');
 
