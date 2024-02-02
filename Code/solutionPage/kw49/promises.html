@@ -16,6 +16,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            transition: 0.5s;
         }
 
         #textFields {
@@ -28,6 +29,9 @@
             background-color: rgba(87,174,255, 20%);
             border: none;
         }
+        #textAButton {
+            margin-right: 500px;
+        }
 
         textarea {
             width: 500px;
@@ -36,6 +40,7 @@
             padding: 10px;
             border: 1px solid #ccc;
             resize: none;
+            transition: 0.5s;
         }
 
         #resultContainer {
@@ -49,7 +54,49 @@
             width: 1000px;
             height: 300px;
             font-size: 16px;
-            white-space: pre-wrap;
+            transition: 0.5s;
+        }
+
+        @media screen and (max-width: 1110px){
+            #container {
+                margin-top: 50px;
+                transition: 0.5s;
+            }
+            button {
+                padding: 10px;
+            }
+            #textAButton {
+                margin-right: 250px;
+            }
+            textarea {
+                width: 300px;
+                height: 400px;
+                transition: 0.5s;
+            }
+            #result {
+                width: 600px;
+                height: 250px;
+                transition: 0.5s;
+            }
+        }
+        @media screen and (max-width: 720px){
+            #container {
+                margin-top: 20px;
+                transition: 0.5s;
+            }
+            textarea {
+                width: 200px;
+                height: 400px;
+                transition: 0.5s;
+            }
+            #textAButton {
+                margin-right: 180px;
+            }
+            #result {
+                width: 500px;
+                height: 200px;
+                transition: 0.5s;
+            }
         }
     </style>
 </head>
@@ -57,7 +104,7 @@
 
 <div id="container">
     <div id="textFields">
-        <button onclick="loadText('a.txt', 'textA')" style="margin-right: 500px;">Load Text A</button>
+        <button id="textAButton" onclick="loadText('a.txt', 'textA')">Load Text A</button>
         <button onclick="loadText('b.txt', 'textB')">Load Text B</button>
     </div>
     <div>
