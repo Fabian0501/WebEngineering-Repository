@@ -5,8 +5,12 @@
     <title>TicTacToe</title>
     <style>
         #feld {
-            margin-left: 600px;
-            margin-top: 200px;
+            margin-left: 700px;
+            margin-top: 80px;
+        }
+        #title {
+            margin-left: 715px;
+            margin-top: 150px;
         }
     </style>
     <script defer>
@@ -108,15 +112,13 @@
                     return;
                 }
             }
-
         }
     </script>
-
 </head>
 
 <body>
 
-
+<h1 id="title">TicTacToe as SVG</h1>
 <svg id="feld" width="300" height="300">
 
     <rect id="a1" x="0" y="0" width="90" height="90" style="fill: #ffffff" onclick="createSVG(this)" />
