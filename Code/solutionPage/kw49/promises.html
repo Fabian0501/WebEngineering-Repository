@@ -2,61 +2,125 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Promises</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #container {
+            margin-top: 100px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #textFields {
+            display: flex;
+            margin-bottom: 20px;
+        }
+        button {
+            border-radius: 10px;
+            padding: 15px;
+            background-color: rgba(87,174,255, 20%);
+            border: none;
+        }
+
+        textarea {
+            width: 500px;
+            height: 250px;
+            margin: 0 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            resize: none;
+        }
+
+        #resultContainer {
+            margin-top: 50px;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #result {
+            width: 1000px;
+            height: 300px;
+            font-size: 16px;
+            white-space: pre-wrap;
+        }
+    </style>
 </head>
 <body>
 
+<div id="container">
+    <div id="textFields">
+        <button onclick="loadText('a.txt', 'textA')" style="margin-right: 500px;">Load Text A</button>
+        <button onclick="loadText('b.txt', 'textB')">Load Text B</button>
+    </div>
+    <div>
+        <textarea id="textA" placeholder="Text A" readonly></textarea>
+        <textarea id="textB" placeholder="Text B" readonly></textarea>
+    </div>
+    <button onclick="compareTexts()" style="margin-top: 50px;">Vergleichen</button>
+    <div id="resultContainer">
+        <textarea id="result" readonly></textarea>
+    </div>
+</div>
+
 <script>
-
-    fetch('a.txt')
-    .then( response => response.text() )
-    .then( textObject => console.log(textObject))
-    .catch(function (error){
-        console.error('Request failed', error);
-        });
-
-    fetch('b.txt')
-        .then( response => response.text() )
-        .then( textObject => console.log(textObject))
-        .catch(function (error){
-            console.error('Request failed', error);
-        });
-
-
-    function splitText(content) {
-        return content.split(/\s+/); // nach leerzeichen trennen
+    function fetchText(url) {
+        return fetch(url)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.text();
+            })
+            .catch(error => {
+                console.error('Request failed', error);
+                throw error; // rethrow the error
+            });
     }
 
-    Promise.all([
-        fetch('a.txt')
-            .then( response => response.text() )
-            .catch(function (error){
-            console.error('Request failed', error);
-            })
-        ,
-        fetch('b.txt')
-            .then( response => response.text() )
-            .catch(function (error){
-                console.error('Request failed', error);
-            })
-    ])
-    .then(([text_a, text_b]) => {
-        const words_a = splitText(text_a);
-        const words_b = splitText(text_b);
+    function loadText(url, textareaId) {
+        fetchText(url)
+            .then(text => document.getElementById(textareaId).value = text)
+            .catch(error => console.error('Error loading text', error));
+    }
+
+    function splitText(content) {
+        return content.split(/\s+/); // nach Leerzeichen trennen
+    }
+
+    function compareTexts() {
+        const textA = document.getElementById("textA").value;
+        const textB = document.getElementById("textB").value;
+
+        if (!textA.trim() || !textB.trim()) {
+            alert("Bitte laden sie die Texte über die Button.");
+            return;
+        }
+
+        const wordsA = splitText(textA);
+        const wordsB = splitText(textB);
 
         let i = 0;
-        while (i < words_a.length || i < words_b.length) {
-            const sliceOfA = "a: " +  words_a.slice(i, i + 7).join(' ');
-            const sliceOfB = " | b: "  + words_b.slice(i, i + 7).join(' ');
+        let result = "";
 
-            console.log( sliceOfA + sliceOfB);
+        while (i < wordsA.length || i < wordsB.length) {
+            const sliceOfA = "a: " + wordsA.slice(i, i + 7).join(' ');
+            const sliceOfB = " | b: " + wordsB.slice(i, i + 7).join(' ');
+
+            result += sliceOfA + sliceOfB + '\n';
             i += 7;
         }
-    })
-    .catch(function (error){
-        console.error('Request failed', error);
-    });
 
+        document.getElementById("result").value = result;
+        document.getElementById("resultContainer").style.display = "flex";
+    }
 </script>
 
 </body>
