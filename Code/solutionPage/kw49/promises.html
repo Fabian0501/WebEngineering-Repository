@@ -61,8 +61,8 @@
         <button onclick="loadText('b.txt', 'textB')">Load Text B</button>
     </div>
     <div>
-        <textarea id="textA" placeholder="Text A" readonly></textarea>
-        <textarea id="textB" placeholder="Text B" readonly></textarea>
+        <textarea id="textA" placeholder="Text A"></textarea>
+        <textarea id="textB" placeholder="Text B"></textarea>
     </div>
     <button onclick="compareTexts()" style="margin-top: 50px;">Vergleichen</button>
     <div id="resultContainer">
@@ -100,7 +100,7 @@
         const textB = document.getElementById("textB").value;
 
         if (!textA.trim() || !textB.trim()) {
-            alert("Bitte laden sie die Texte über die Button.");
+            alert("Bitte laden sie die Texte über die Button oder geben Sie selbst einen ein.");
             return;
         }
 

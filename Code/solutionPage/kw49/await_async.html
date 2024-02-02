@@ -3,43 +3,119 @@
 <head>
     <meta charset="UTF-8">
     <title>async/await</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #container {
+            margin-top: 100px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #textFields {
+            display: flex;
+            margin-bottom: 20px;
+        }
+
+        button {
+            border-radius: 10px;
+            padding: 15px;
+            background-color: rgba(87,174,255, 20%);
+            border: none;
+        }
+
+        textarea {
+            width: 500px;
+            height: 250px;
+            margin: 0 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            resize: none;
+        }
+
+        #resultContainer {
+            margin-top: 50px;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #result {
+            width: 1000px;
+            height: 300px;
+            font-size: 16px;
+            white-space: pre-wrap;
+        }
+    </style>
 </head>
 <body>
+<div id="container">
+    <div id="textFields">
+        <button onclick="loadText('a.txt', 'textA')" style="margin-right: 500px;">Load Text A</button>
+        <button onclick="loadText('b.txt', 'textB')">Load Text B</button>
+    </div>
+    <div>
+        <textarea id="textA" placeholder="Text A"></textarea>
+        <textarea id="textB" placeholder="Text B"></textarea>
+    </div>
+    <button onclick="accessText()" style="margin-top: 50px;">Vergleichen</button>
+    <div id="resultContainer">
+        <textarea id="result" readonly></textarea>
+    </div>
+</div>
+
 
 <script>
-  async function getProcessedData( fileName ) {
-    let file;
-    try {
-      file = await fetch(fileName);
-      file = await file.text();
-    } catch (error) {
-      await console.error('Request failed', error);
+    async function getProcessedData( fileName ) {
+        let file;
+        try {
+            file = await fetch(fileName);
+            file = await file.text();
+        } catch (error) {
+            await console.error('Request failed', error);
+        }
+        return file;
     }
-    return file;
-  }
-  async function splitText(content) {
-      return content.split(/\s+/);
-  }
+    async function splitText(content) {
+        return content.split(/\s+/);
+    }
 
-  async function accessText() {
-      try{
-          const words_a = await splitText(await getProcessedData('a.txt'));
-          const words_b = await splitText(await getProcessedData('b.txt'));
+    async function accessText() {
+        try{
+            const words_a = await splitText(await getProcessedData('a.txt'));
+            const words_b = await splitText(await getProcessedData('b.txt'));
 
-          let i = 0;
-          while (i < words_a.length || i < words_b.length) {
-              const sliceOfA = "a: " +  words_a.slice(i, i + 7).join(' ');
-              const sliceOfB = " | b: "  + words_b.slice(i, i + 7).join(' ');
+            let i = 0;
+            let result = "";
+            while (i < words_a.length || i < words_b.length) {
+                const sliceOfA = "a: " +  words_a.slice(i, i + 7).join(' ');
+                const sliceOfB = " | b: "  + words_b.slice(i, i + 7).join(' ');
 
-              console.log( sliceOfA + sliceOfB);
-              i += 7;
-          }
-      } catch (error) {
-          console.error('Request failed', error);
-      }
-  }
+                /*console.log( sliceOfA + sliceOfB);*/
+                result += sliceOfA + sliceOfB + '\n';
+                i += 7;
+            }
+            document.getElementById("result").value = result;
+            document.getElementById("resultContainer").style.display = "flex";
+        } catch (error) {
+            console.error('Request failed', error);
+        }
+    }
+    async function loadText(url, textareaId) {
+        try {
+            const text = await getProcessedData(url);
+            document.getElementById(textareaId).value = text;
+        } catch (error) {
+            console.error('Error loading text', error);
+        }
+    }
 
-  accessText();
+  /*accessText();*/
 
 </script>
 
