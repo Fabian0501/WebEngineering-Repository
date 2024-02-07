@@ -4,7 +4,7 @@
  * öffnet die KalenderWochen sidebar und schiebt content auf der website nach rechts. <br>
  * ggf. wird die andere sidebar geschlossen, wenn si offen ist, sodass nur eine sidebar offen ist.
  */
-function openKWSidebar() {
+const openKWSidebar = () => {
     if (document.getElementById("sidebarTasks").style.width === "300px") {
         closeTasksSidebar();
     }
@@ -32,7 +32,7 @@ function openKWSidebar() {
  * schlißt die sidebar Kalenderwochen und schiebt den content auf der website wieder zurück. <br>
  * Entfernt dem element, der die Liste geöffnet hat, die class "active" beim schliessen der sidebar.
  */
-function closeKWSidebar() {
+const closeKWSidebar = () => {
     document.getElementById("sidebarKW").style.width = "0";
     document.getElementById("kw").classList.remove("active");
     resetNavbar();
@@ -44,7 +44,7 @@ function closeKWSidebar() {
  * öffnet die Tasks sidebar und schiebt content bei seite. <br>
  * ggf. wenn die andere sidebar geöffnet ist, wird sie erst geschlossen bevor die neue öffnet.
  */
-function openTasksSidebar() {
+const openTasksSidebar = () => {
     //schliesst sidebarKW, wenn sidebarKW aktiv ist und sidebarTasks geöffnet werden soll.
     if (document.getElementById("sidebarKW").style.width === "200px") {
        closeKWSidebar();
@@ -62,18 +62,18 @@ function openTasksSidebar() {
  * schliesst die Tasks sidebar und schiebt content wieder zurück. <br>
  * entfernt die class "active" von dem element das die sidebar aufgerufen hat.
  */
-function closeTasksSidebar() {
+const closeTasksSidebar = () => {
     document.getElementById("sidebarTasks").style.width = "0";
     document.getElementById("tasks").classList.remove("active");
     resetNavbar();
     resetIframe();
 }
 
-function resetNavbar() {
+const resetNavbar = () => {
     document.getElementById("navbar").style.marginLeft = "0";
     document.getElementById("navbar").style.width = "97.5vw";
 }
-function resetIframe() {
+const resetIframe = () => {
     document.getElementById("iframe").style.marginLeft = "0";
     document.getElementById("iframe").style.width = "1770px";
 }
@@ -82,7 +82,7 @@ function resetIframe() {
  * sorgt dafür das bei click immer nur einer der beiden button aktiv ist
  * @param clickedElement this
  */
-function setActive(clickedElement) {
+const setActive = (clickedElement) => {
     let kw = document.getElementById("kw");
     let tasks = document.getElementById("tasks");
     if (clickedElement === kw) {
@@ -94,7 +94,7 @@ function setActive(clickedElement) {
     }
 }
 
-function changeIframe(value) {
+const changeIframe = (value) => {
     let iframe = document.getElementById("iframe");
     let image = document.getElementById("image");
 
@@ -112,22 +112,40 @@ function changeCurrentWatching(currentView) {
     let view = "";
     switch(currentView) {
         case 'kw41/kw41_1.7.html':
-            view = 'HTML-Wireframe';
+            view = '1.7 HTML-Wireframe';
             break;
         case 'kw42/2.4_Wireframe.html':
-            view = 'HTML-CSS-Wireframe';
+            view = '2.4 HTML-CSS-Wireframe';
             break;
         case 'kw43/mobileFirst.html':
-            view = 'Mobile First Grid';
+            view = '3.2 Mobile First Grid';
             break;
         case 'kw44/4.3Fibonacci.html':
-            view = 'Fibonacci';
+            view = '4.3 Fibonacci';
             break;
         case 'kw46/rednerListe.html':
-            view = 'Rednerliste';
+            view = '5.2 Rednerliste';
             break;
         case 'kw47/klammerPaare.html':
-            view = 'KlammerPaare';
+            view = '6.1 KlammerPaare';
+            break;
+        case 'kw48/filter.html':
+            view = '7.2 Filter-map-reduce'
+            break;
+        case 'kw49/promises.html' :
+            view = '8.1 Promises';
+            break;
+        case 'kw49/await_async.html':
+            view = '8.2 Await & Async';
+            break;
+        case 'kw50/TicTacToGame/TicTacTo.html':
+            view = '9.3 TicTacTo as SVG';
+            break;
+        case 'kw51/10.2.html':
+            view = '10.2 TypeScript Mistakes';
+            break;
+        case 'http://localhost:3000':
+            view = '11.1 Node.js Server';
             break;
     }
 
@@ -140,7 +158,8 @@ function changeCurrentWatching(currentView) {
 
 window.onload = responsive;
 window.onresize = responsive;
-function responsive() {
+
+responsive = () => {
     let title = document.getElementById('title');
     let screenWidth = window.innerWidth;
 
@@ -212,3 +231,21 @@ function goHome() {
     resetTitle();
 }
 
+/*
+// stellt die funktionalität etwas im terminal einzugeben von Node.js-Modul zu verfügung
+const { exec } = require('child_process');
+function startNodeServer() {
+    const serverPath = 'kw52/server.js';
+    exec(`node ${serverPath}`, (error, stdout, stderr) => {
+        if (error) {
+            console.error(`Fehler beim Starten des Servers: ${error.message}`);
+            return;
+        }
+        if (stderr) { // standard error
+            console.error(`Fehlerausgabe: ${stderr}`);
+            return;
+        }
+        console.log(`Serverausgabe: ${stdout}`); // standard ausgabe
+        changeIframe('http://localhost:3000');
+    });
+}*/
