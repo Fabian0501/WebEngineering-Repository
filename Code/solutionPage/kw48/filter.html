@@ -7,8 +7,8 @@
 <body>
 
 <h2>Filtertext</h2>
-<p>Beispiel text</p>
-<textarea id="inputText" rows="20" cols="180">
+<p>Verwenden Sie den beispiel text oder geben sie ihren eigenen ein.</p>
+<textarea id="inputText" rows="20" cols="200">
     In guter Tradition und anlässlich der öffentlichen Diskussion zum Plagiatsthema sieht sich die Hochschule Bonn-Rhein-Sieg in der Pflicht, ihre Position klar und eindeutig zu bekunden und hochschulweit Maßnahmen einzuleiten.
 
 1. Die Hochschule Bonn-Rhein-Sieg bekennt sich mit dieser Resolution öffentlich zum akademischen Ethos und den akademischen Standards.
@@ -47,6 +47,7 @@ Eine akademische Arbeit stellt eine individuelle Leistung dar, die eigenständig
 
 </textarea>
 <br>
+<button onclick="clearText()">Clear</button>
 <button onclick="filterText()">Filtern</button>
 <h2>Ergebnis</h2>
 <div id="result"></div>
@@ -58,30 +59,36 @@ Eine akademische Arbeit stellt eine individuelle Leistung dar, die eigenständig
 
         let plagiatsresolutionText =  document.getElementById("inputText").value;
 
-        const textWithoutCharacters = plagiatsresolutionText.replace(/<[^>]*>/g, '').replace(/[^\w\s]/g, '');
+        if (plagiatsresolutionText.trim().length === 0) {
+            alert("Der Text ist leer. Bitte fügen Sie Text hinzu.");
+        }else{
 
-        const textToLower = textWithoutCharacters.toLowerCase().split(/\s+/);
+            const textWithoutCharacters = plagiatsresolutionText.replace(/<[^>]*>/g, '').replace(/[^\w\s]/g, '');
 
-        const filteredText = textToLower.filter((words) => !stoppworte.includes(words));
+            const textToLower = textWithoutCharacters.toLowerCase().split(/\s+/);
 
-        const count = filteredText.reduce((number, word) => {
-            number[word] = (number[word] || 0) + 1;
-            return number;
-        }, {});
+            const filteredText = textToLower.filter((words) => !stoppworte.includes(words));
 
-        const sortedWords = Object.entries(count).sort((a, b) => b[1] - a[1]);
+            const count = filteredText.reduce((number, word) => {
+                number[word] = (number[word] || 0) + 1;
+                return number;
+            }, {});
 
-        const resultDiv = document.getElementById("result");
-        resultDiv.innerHTML = "<strong>Top 3 Wörter:</strong><br>";
+            const sortedWords = Object.entries(count).sort((a, b) => b[1] - a[1]);
 
-        const topThree = sortedWords.slice(0, 3);
-        topThree.forEach((entry) => {
-            resultDiv.innerHTML += entry[0] + ": " + entry[1] + "<br>";
-        });
+            const resultDiv = document.getElementById("result");
+            resultDiv.innerHTML = "<strong>Top 3 Wörter:</strong><br>";
+
+            const topThree = sortedWords.slice(0, 3);
+            topThree.forEach((entry) => {
+                resultDiv.innerHTML += entry[0] + ": " + entry[1] + "<br>";
+            });
+        }
     }
-
-
-
+    function clearText() {
+        document.getElementById("inputText").value = "";
+        document.getElementById("result").innerHTML = "";
+    }
 </script>
 
 </body>
