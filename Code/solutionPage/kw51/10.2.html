@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #container {
+            margin-left: 30px;
+            display: flex;
+            flex-wrap: wrap;
+        }
+        #task {
+            width: 500px;
+            background-color: #cc6a6a;
+            border: 2px solid #ff2a2a;
+            padding: 20px;
+        }
+        p {
+            font-size: 20px;
+        }
+        .buttonStyle1 {
+            margin-left: 100px;
+            height: 35px;
+            margin-top: 150px;
+            font-size: 20px;
+        }
+        .buttonStyle2 {
+            margin-left: 100px;
+            height: 35px;
+            margin-top: 20px;
+            font-size: 20px;
+        }
+        #resultField {
+            display: none;
+            width: 500px;
+            margin-left: 100px;
+            background-color: #82d08d;
+            border: 2px solid #43cb57;
+            padding: 20px;
+        }
+        .highlighted {
+            background-color: yellow;
+        }
+        .buttonContainer {
+            display: flex;
+            flex-direction: column;
+        }
+        #correctCode {
+            display: none;
+            width: 500px;
+            margin-top: 100px;
+            background-color: #a1cbfa;
+            border: 2px solid #57aeff;
+            padding: 20px;
+        }
+    </style>
+    <script>
+        let isHighlighted = false;
+        function showResult() {
+            let result = document.getElementById('resultField')
+            if (window.getComputedStyle(result).display === 'none') {
+                result.style.display = 'block';
+                document.getElementById('showExplanation').innerHTML = 'Erklärung ausblenden';
+            }else {
+                result.style.display = 'none';
+                document.getElementById('showExplanation').innerHTML = 'Erklärung anzeigen';
+            }
+        }
+        function showCorrectedCode() {
+            let code = document.getElementById('correctCode')
+            if (window.getComputedStyle(code).display === 'none') {
+                code.style.display = 'block';
+                document.getElementById('showCorrection').innerHTML = 'Verbesserung ausblenden';
+
+                let explanation = document.getElementById('resultField');
+                if (window.getComputedStyle(explanation).display === 'none') {
+                    code.style.marginLeft = '100px';
+                }else {
+                    code.style.marginLeft = 'none'
+                }
+            }else {
+                code.style.display = 'none';
+                document.getElementById('showCorrection').innerHTML = 'Verbesserung anzeigen';
+            }
+        }
+        function highlightCodes() {
+            let objectID = ['fehler1', 'fehler2.1', 'fehler2.2', 'fehler3.1', 'fehler3.2'];
+            objectID.forEach(function(id) {
+                let obj = document.getElementById(id);
+                if (isHighlighted === false) {
+                    obj.classList.add('highlighted');
+                }else {
+                    obj.classList.remove('highlighted');
+                }
+            });
+            isHighlighted = isHighlighted !== true;
+            if (isHighlighted === true) {
+                document.getElementById('showResult').innerHTML = 'Fehler verbergen';
+            }else {
+                document.getElementById('showResult').innerHTML = 'Fehler anzeigen';
+            }
+        }
+    </script>
+</head>
+<body>
+<h2 style="margin-left: 30px;">Fehler finden mit TypeScript</h2>
+<div id="container">
+
+    <div id="task">
+        <p id="fehler2.1"> const add = (x, y) => x + y; </p>
+        <p id="fehler2.2"> const equals = (x, y) => x === y; </p>
+        <br>
+        <p> console.log(add(1, 2)); </p>
+        <p id="fehler3.1"> console.log(add(true, true)); </p>
+        <p id="fehler3.2"> console.log(add(true, false)); </p>
+        <p id="fehler1"> var x = y = 1; </p>
+        <p> console.log(add(equals(x, y), equals(y, x))); </p>
+    </div>
+
+    <div class="buttonContainer">
+        <button class="buttonStyle1" id="showResult" onclick="highlightCodes()">Fehler anzeigen</button>
+        <button class="buttonStyle2" id="showExplanation" onclick="showResult()">Erklärung anzeigen</button>
+        <button class="buttonStyle2" id="showCorrection" onclick="showCorrectedCode()">Verbesserung anzeigen</button>
+    </div>
+
+
+    <div id="resultField">
+        <p>
+            x = y = 1; hier wird die variable y unabsichtlich global deklariert.
+            Sollte lieber const oder let verwenden, um dies zu verhindern.
+        </p>
+        <p>
+            const add = (x,y) => x+y; const equals = (x,y) => x===y; Die Typen der Parameter in den Funktionen sind nicht angegeben.
+            In Typescript gibt es die möglichkeit genau dies zu tun, indem wir die Typen für die Parameter und dessen Rückgabewerte definieren.
+        </p>
+        <p>
+            Die Funktionen haben keinen definierten typ, dh es könnte theoretisch jeder typ eingetragen werden, jedoch gibt es da ausnahmen,
+            die ein erfolgreiches ausführen beeinflussen können.
+            Deshalb sollte man von vornerein die rückgabewerte und die parameter typen stets angegeben werden.
+        </p>
+    </div>
+
+    <div id="correctCode">
+        <p> const add = (x: number, y: number): number => x + y;</p>
+
+        <p>const equals = (x: any, y: any): boolean => x === y;</p>
+
+        <p> let x: number = 1;</p>
+
+        <p>let y: number = 1;</p>
+    </div>
+</div>
+
+
+
+
+</body>
+</html>
