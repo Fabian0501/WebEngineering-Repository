@@ -7,21 +7,22 @@
 
     <style>
         #redner {
-            padding: 5px;
+            border-radius: 10px;
+            padding: 15px;
             font-size: 15px;
+            background-color: rgba(87,174,255, 20%);
+            border: none;
         }
         #addButton {
-            padding: 6px;
+            border-radius: 10px;
+            padding: 15px;
+            background-color: rgba(87,174,255, 20%);
+            border: none;
         }
         #Rednerliste li {
-            padding: 5px;
+            margin-top: 5px;
+            padding: 5px 10px;
             font-size: 15px;
-        }
-        button {
-            font-size: 15px;
-            background-color: white;
-            border: solid darkgrey;
-            margin-left: 5px;
         }
         input {
             height: 19px;
@@ -68,6 +69,10 @@
             li.appendChild(timer);
 
             let startStopButton = document.createElement("button"); // Start/Stop-Button für den Timer hinzufügen
+            startStopButton.style.backgroundColor = "rgba(87,174,255, 20%)";
+            startStopButton.style.padding = "10px";
+            startStopButton.style.border = "none";
+            startStopButton.style.borderRadius= "10px";
             startStopButton.textContent = " Stop! "; // default textContent
             startStopButton.addEventListener("click", event => startStopTimer(li, timer, startStopButton));
             li.appendChild(startStopButton);
