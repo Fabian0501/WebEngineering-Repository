@@ -144,13 +144,19 @@ function changeCurrentWatching(currentView) {
         case 'kw51/10.2.html':
             view = '10.2 TypeScript Mistakes';
             break;
-        case 'http://localhost:3000':
+        case 'http://localhost:3000/?name=fabian':
             view = '11.1 Node.js Server';
+            break;
+        case 'moveSVG.html':
+            view = 'Changeable SVG'
+            break;
+        case 'spread.html':
+            view = 'Spread Operator';
             break;
     }
 
     let title = document.getElementById('title');
-    title.style.marginTop = "20px";
+    /*title.style.marginTop = "10px";*/
     title.innerHTML = `<span style="font-size: 20px;">${text}</span>` + '<br>' +
         `<span style="font-size: 30px;">${view}</span>`;
     responsive();
@@ -159,10 +165,9 @@ function changeCurrentWatching(currentView) {
 window.onload = responsive;
 window.onresize = responsive;
 
-responsive = () => {
+function responsive()  {
     let title = document.getElementById('title');
     let screenWidth = window.innerWidth;
-
 
     if (screenWidth < 701) {
         if (title.innerText === "Solution Navigator") {
@@ -177,7 +182,7 @@ responsive = () => {
                 `<span style="font-size: 20px;">${part2}</span>`;
 
         }
-        title.style.marginTop = "25px";
+        title.style.marginTop = "5px";
 
     } else {
 
@@ -230,22 +235,3 @@ function goHome() {
     removeHome();
     resetTitle();
 }
-
-/*
-// stellt die funktionalität etwas im terminal einzugeben von Node.js-Modul zu verfügung
-const { exec } = require('child_process');
-function startNodeServer() {
-    const serverPath = 'kw52/server.js';
-    exec(`node ${serverPath}`, (error, stdout, stderr) => {
-        if (error) {
-            console.error(`Fehler beim Starten des Servers: ${error.message}`);
-            return;
-        }
-        if (stderr) { // standard error
-            console.error(`Fehlerausgabe: ${stderr}`);
-            return;
-        }
-        console.log(`Serverausgabe: ${stdout}`); // standard ausgabe
-        changeIframe('http://localhost:3000');
-    });
-}*/

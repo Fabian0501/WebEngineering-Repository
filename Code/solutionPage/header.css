@@ -1,10 +1,8 @@
-/* Inspiriert : w3school */
-
 #navbar {
     margin-top: 5px;
     overflow: hidden;
-    background-color: #f1f1f1;
-    padding: 40px 10px;
+    background-color: #57AEFF19;
+    padding: 20px 10px;
     border-radius: 20px;
     transition: 0.4s;
     position: fixed;
@@ -12,10 +10,12 @@
     top: 0;
     z-index: 99;
     cursor: default;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
 }
 
 #navbar a {
-    float: left;
     color: black;
     text-align: center;
     padding: 8px;
@@ -32,7 +32,6 @@
     cursor: pointer;
 }
 
-
 #navbar a.active {
     background-color: dodgerblue;
     border-radius: 15px;
@@ -40,47 +39,8 @@
 }
 
 #navbar-right {
-    position: fixed;
-    top: 0;
     margin-top: 10px;
-}
-@media screen and (max-width: 1400px){
-    #navbar {
-        width: 97vw !important;
-    }
-}
-@media screen and (max-width: 1100px){
-    #navbar {
-        width: 96.5vw !important;
-    }
-}
-@media screen and (max-width: 950px){
-    #navbar {
-        width: 95.5vw !important;
-    }
-}
-@media screen and (max-width: 750px){
-    #navbar {
-        width: 94.5vw !important;
-    }
-}
-@media screen and (max-width: 700px) {
-    #navbar {
-        padding: 20px 10px !important;
-    }
-    #navbar a {
-        display: block;
-        text-align: left;
-        padding: 8px;
-        font-size: 15px;
-        line-height: 12px;
-    }
-    #navbar-right {
-        float: none;
-    }
-}
-@media screen and (max-width: 650px){
-    #navbar {
-        width: 93.5vw;
-    }
+    display: flex;
+    align-items: flex-start;
+    flex-wrap: wrap;
 }

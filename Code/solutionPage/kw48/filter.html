@@ -3,12 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <style>
+        button {
+            border-radius: 10px;
+            padding: 15px;
+            background-color: rgba(87,174,255, 20%);
+            border: none;
+        }
+    </style>
 </head>
 <body>
-
-<h2>Filtertext</h2>
-<p>Verwenden Sie den beispiel text oder geben sie ihren eigenen ein.</p>
-<textarea id="inputText" rows="20" cols="200">
+<div style="margin-left: 20px;">
+    <h2>Filtertext</h2>
+    <p>Verwenden Sie den beispiel text oder geben sie ihren eigenen ein.</p>
+    <label for="inputText"></label><textarea id="inputText" cols="100" rows="30" style="border: solid #57AEFF33;">
     In guter Tradition und anlässlich der öffentlichen Diskussion zum Plagiatsthema sieht sich die Hochschule Bonn-Rhein-Sieg in der Pflicht, ihre Position klar und eindeutig zu bekunden und hochschulweit Maßnahmen einzuleiten.
 
 1. Die Hochschule Bonn-Rhein-Sieg bekennt sich mit dieser Resolution öffentlich zum akademischen Ethos und den akademischen Standards.
@@ -46,11 +54,13 @@ Eine akademische Arbeit stellt eine individuelle Leistung dar, die eigenständig
 "Ich erkläre hiermit, dass ich den akademischen Ehrencodex kenne und über die Folgen einer Missachtung oder Verletzung aufgeklärt worden bin."
 
 </textarea>
-<br>
-<button onclick="clearText()">Clear</button>
-<button onclick="filterText()">Filtern</button>
-<h2>Ergebnis</h2>
-<div id="result"></div>
+    <br>
+    <button onclick="clearText()">Clear</button>
+    <button onclick="filterText()">Filtern</button>
+
+    <div id="result" style="margin-top: 25px"></div>
+
+</div>
 
 
 <script>
@@ -78,6 +88,7 @@ Eine akademische Arbeit stellt eine individuelle Leistung dar, die eigenständig
 
             const resultDiv = document.getElementById("result");
             resultDiv.innerHTML = "<strong>Top 3 Wörter:</strong><br>";
+            resultDiv.style.fontSize = '20px';
 
             const topThree = sortedWords.slice(0, 3);
             topThree.forEach((entry) => {

@@ -4,5 +4,4 @@ function startNodeServer() {
     const serverPath = 'kw52/server.js';
     exec(`node ${serverPath}`);
 }
-startNodeServer();
-
+/*startNodeServer();*/

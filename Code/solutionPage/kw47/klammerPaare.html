@@ -5,22 +5,44 @@
     <title>KlammerPaare</title>
 
   <style>
-    #inputField {
+    #customBrackets {
       width: 300px;
       padding: 10px;
+      margin-left: 10px;
+      font-size: 15px;
+      border-radius: 10px;
+      border: solid #57AEFF33;
+    }
+    .text {
+        font-size: 20px;
+    }
+    #custom {
+        border-radius: 10px;
+        padding: 15px;
+        background-color: rgba(87,174,255, 20%);
+        border: none;
+    }
+    #inputField {
+        margin-left: 10px;
+        font-size: 15px;
+        padding: 12px;
+        border-radius: 10px;
+        border: solid #57AEFF33;
     }
   </style>
 
 </head>
 <body>
+<div style="margin-top: 50px">
+    <label class="text" for="customBrackets">Enter custom bracket pair:</label>
+    <input type="text" id="customBrackets" placeholder="e.g., <>, +-, !?">
+    <button id="custom" onclick="addCustomBracket()">Add Custom Bracket</button>
+</div>
 
-<label for="customBrackets">Enter custom bracket pair:</label>
-<input type="text" id="customBrackets" placeholder="e.g., <>, +-, !?">
-<button onclick="addCustomBracket()">Add Custom Bracket</button>
 
 
 <h1>Bracket Checker</h1>
-<label for="inputField">Enter a string with brackets:</label>
+<label for="inputField" class="text" s>Enter a string with brackets:</label>
 <input type="text" id="inputField" oninput="checkBrackets()" placeholder="() [] {}">
 
 <script>

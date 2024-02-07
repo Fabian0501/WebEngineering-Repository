@@ -5,12 +5,54 @@
     <title>TicTacToe</title>
     <style>
         #feld {
+            transition: 0.5s;
             margin-left: 700px;
             margin-top: 80px;
         }
         #title {
+            transition: 0.5s;
             margin-left: 715px;
             margin-top: 150px;
+        }
+        @media screen and (max-width: 1400px){
+            #title {
+                margin-left: 515px;
+            }
+            #feld{
+                margin-left: 500px;
+            }
+        }
+        @media screen and (max-width: 1250px){
+            #title {
+                margin-left: 415px;
+            }
+            #feld{
+                margin-left: 400px;
+            }
+        }
+        @media screen and (max-width: 1100px){
+            #title {
+                margin-left: 315px;
+            }
+            #feld{
+                margin-left: 300px;
+            }
+        }
+        @media screen and (max-width: 900px){
+            #title {
+                margin-left: 215px;
+            }
+            #feld{
+                margin-left: 200px;
+            }
+        }
+        @media screen and (max-width: 700px){
+            #title {
+                margin-left: 115px;
+            }
+            #feld{
+                margin-left: 100px;
+            }
         }
     </style>
     <script defer>

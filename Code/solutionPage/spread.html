@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+        }
+        code {
+            font-size: 15px;
+        }
+        #demo1 {
+            display: none;
+        }
+        #showDemo1 {
+            font-size: 20px;
+            border-radius: 20px;
+            padding: 15px;
+            background-color: rgba(87,174,255, 20%);
+            border: none;
+        }
+        #demo1Result {
+            margin-top: 30px;
+            font-size: 20px;
+            border-radius: 20px;
+            padding: 15px;
+            background-color: rgba(87,174,255, 20%);
+            border: none;
+        }
+        #resultDemo1 {
+            margin-top: 20px;
+        }
+
+        #demo2 {
+            display: none;
+        }
+        #showDemo2 {
+            font-size: 20px;
+            border-radius: 20px;
+            padding: 15px;
+            background-color: rgba(87,174,255, 20%);
+            border: none;
+        }
+        #demo2Result {
+            margin-top: 30px;
+            font-size: 20px;
+            border-radius: 20px;
+            padding: 15px;
+            background-color: rgba(87,174,255, 20%);
+            border: none;
+        }
+        #resultDemo2 {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+<h1> The Spread Operator (...) </h1>
+<br>
+<h2> What is the Spread Operator ?</h2>
+
+<p style="font-size: 20px;">The JavaScript spread operator (...) allows us to quickly copy all or parts of an existing array into another array.  <br>
+    It works by expanding an iterable, such as an array, into individual elements. <br>
+    This means that instead of manually iterating over the elements of an array and copying them one by one, <br>
+    we can simply use the spread operator to copy the entire array or specific parts of it in a more concise and efficient manner.
+</p>
+
+<button id="showDemo1" onclick="showDemo1()">Demo 1</button>
+<div id="demo1">
+    <br>
+    <code>
+        const originalArray = [1, 2, 3, 4, 5]; <br>
+        const copiedArray = [...originalArray]; <br>
+
+        What is the Output ? <br>
+        console.log(copiedArray);
+    </code>
+</div>
+<button id="demo1Result" onclick="demo()">Result 1</button>
+<div id="resultDemo1" style="width: 70px;"></div>
+
+<br>
+
+<button id="showDemo2" onclick="showDemo2()">Demo 2</button>
+<div id="demo2">
+    <br>
+    <code>
+        const array1 = [1, 2, 3]; <br>
+        const array2 = [4, 5, 6]; <br>
+
+        What is the Output this time ? <br>
+        const combinedArray = [...array1, ...array2];
+    </code>
+</div>
+<button id="demo2Result" onclick="demo2()">Result 2</button>
+<div id="resultDemo2" style="width: 80px;"></div>
+
+<script>
+    function showDemo1() {
+        document.getElementById('demo1').style.display = 'block';
+    }
+    function demo() {
+        const originalArray = [1, 2, 3, 4, 5];
+        const copiedArray = [...originalArray];
+        let resultDemo1 = document.getElementById('resultDemo1');
+        resultDemo1.innerHTML = copiedArray + "";
+        resultDemo1.style.backgroundColor = "yellow";
+    }
+
+    function showDemo2() {
+        document.getElementById('demo2').style.display = 'block';
+    }
+
+    function demo2() {
+        const array1 = [1, 2, 3];
+        const array2 = [4, 5, 6];
+        const combinedArray = [...array1, ...array2]; // Combining arrays
+        let resultDemo2 = document.getElementById('resultDemo2');
+        resultDemo2.innerHTML = combinedArray + "";
+        resultDemo2.style.backgroundColor = "yellow";
+    }
+</script>
+</body>
+</html>

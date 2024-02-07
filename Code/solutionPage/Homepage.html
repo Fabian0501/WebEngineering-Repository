@@ -6,6 +6,8 @@
     <link rel="stylesheet" href="header.css">
     <link rel="stylesheet" href="sidebar.css">
     <script src="javaScript.js"></script>
+    <script src="fetchTime.js"></script>
+    <script src="startServer.js"></script>
     <style>
         body {
             background-color: #ffffff;
@@ -13,7 +15,7 @@
             display: flex;
         }
         iframe {
-            margin-top: 200px;
+            margin-top: 210px;
             margin-left: 15px;
             /*border: 2px solid red;*/
             border: none;
@@ -34,6 +36,13 @@
             margin-top: 230px;
             transition: 0.5s;
         }
+        #time {
+            width: 100%;
+            margin-left: 1px;
+            margin-top: 80px;
+            font-size: 18px;
+            pointer-events: none;
+        }
         @media screen and (max-width: 900px) {
             #image {
                 width: 1700px;
@@ -41,9 +50,17 @@
                 transition: 0.5s;
             }
         }
+        @media screen and (max-width: 860px){
+            #navbar {
+                width: 95.5vw !important;
+            }
+            #tasks {
+                margin-left: 1px;
+            }
+        }
         @media screen and (max-width: 700px) {
             #iframe {
-                margin-top:160px;
+                margin-top:180px;
                 height: 810px;
             }
             #image {
@@ -52,7 +69,19 @@
                 transition: 0.5s;
             }
         }
+        @media screen and (max-width: 600px){
+            #title {
+                margin-top: 10px;
+            }
+        }
+        @media screen and (max-width: 382px){
+            #tasks {
+                margin-left: unset;
+            }
+        }
     </style>
+    <script>
+    </script>
 </head>
 
 <body>
@@ -60,6 +89,9 @@
 
 <div id="sidebarKW" class="sidebar">
     <a class="closebtn" onclick="closeKWSidebar()">×</a>
+    <a id="time">
+        2024-02-07T15:41Z
+    </a>
     <a onclick="changeIframe('kw41/kw41_1.7.html'); showHome()">
         1.7
         <img src='https://kaul.inf.h-brs.de/ccm/we/ws23/resources/img/icons/exam.svg' style="width: 20px;"
@@ -71,7 +103,7 @@
              alt="picture can't loaded">
     </a>
 
-    <a onclick="changeIframe('kw43/mobileFirst.html'); showHome()">3.3</a>
+    <a onclick="changeIframe('kw43/mobileFirst.html'); showHome();">3.2</a>
 
     <a onclick="changeIframe('kw44/4.3Fibonacci.html'); showHome()">4.3</a>
 
@@ -85,6 +117,35 @@
         <img src='https://kaul.inf.h-brs.de/ccm/we/ws23/resources/img/icons/exam.svg' style="width: 20px;"
              alt="picture can't loaded">
     </a>
+    <a onclick="changeIframe('kw48/filter.html'); showHome()">
+        7.2
+        <img src='https://kaul.inf.h-brs.de/ccm/we/ws23/resources/img/icons/exam.svg' style="width: 20px;"
+             alt="picture can't loaded">
+    </a>
+    <a onclick="changeIframe('kw49/promises.html'); showHome()">
+        8.1
+    </a>
+    <a onclick="changeIframe('kw49/await_async.html'); showHome()">
+        8.2
+    </a>
+    <a onclick="changeIframe('kw50/TicTacToGame/TicTacTo.html');showHome()">
+        9.3
+        <img src='https://kaul.inf.h-brs.de/ccm/we/ws23/resources/img/icons/exam.svg' style="width: 20px;"
+             alt="picture can't loaded">
+    </a>
+    <a onclick="changeIframe('kw51/10.2.html');showHome()">
+        10.2
+    </a>
+    <a onclick="showHome();changeIframe('http://localhost:3000/?name=fabian')">
+        11.1
+    </a>
+    <a onclick="changeIframe('moveSVG.html');showHome();">
+        SVG
+    </a>
+    <a onclick="changeIframe('spread.html');showHome()">
+        ...
+    </a>
+
 </div>
 
 <div id="sidebarTasks" class="sidebar">
@@ -97,12 +158,12 @@
 
 <div id="navbar">
     <div id="navbar-right">
-        <a id="kw" style="margin-top: 5px;" onclick="openKWSidebar(); setActive(this)"> <b style="font-size: 30px;">☰</b> Tasks as Iframes </a>
-        <a id="tasks" style="margin-left: 5px; margin-top: 5px;" onclick="openTasksSidebar(); setActive(this)"> <b style="font-size: 30px;">☰</b>Tasks as ref</a>
-        <a id="home" style=" margin-left: 5px; margin-top: 9px; pointer-events: none" onclick="goHome()"> </a>
+        <a id="kw" onclick="openKWSidebar(); setActive(this)"> <b style="font-size: 30px;">☰</b> Tasks as Iframes </a>
+        <a id="tasks" style="margin-left: 5px; " onclick="openTasksSidebar(); setActive(this)"> <b style="font-size: 30px;">☰</b>Tasks as ref</a>
+        <a id="home" style=" margin-left: 5px; pointer-events: none" onclick="goHome()"> </a>
     </div>
 
-    <div class="changeableTitle" id="title">Solution Navigator</div>
+    <div id="title">Solution Navigator</div>
 </div>
 
 

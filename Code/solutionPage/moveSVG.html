@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #field {
+            display: flex;
+            flex-direction: row;
+        }
+        #first {
+            margin-left: 130px;
+            border-radius: 10px;
+            border: solid #57AEFF33;
+            background-color: rgba(87,174,255, 20%);
+            font-size: 15px;
+            padding: 15px;
+        }
+        #rotateLeft {
+            margin-left: 380px;
+            border-radius: 10px;
+            border: solid #57AEFF33;
+            background-color: rgba(87,174,255, 20%);
+            font-size: 15px;
+            padding: 15px;
+        }
+        #rotateRight {
+            margin-left: 20px;
+            border-radius: 10px;
+            border: solid #57AEFF33;
+            background-color: rgba(87,174,255, 20%);
+            font-size: 15px;
+            padding: 15px;
+        }
+        #increase {
+            margin-left: 200px;
+            border-radius: 10px;
+            border: solid #57AEFF33;
+            background-color: rgba(87,174,255, 20%);
+            font-size: 15px;
+            padding: 15px;
+        }
+        #shrink {
+            margin-left: 20px;
+            border-radius: 10px;
+            border: solid #57AEFF33;
+            background-color: rgba(87,174,255, 20%);
+            font-size: 15px;
+            padding: 15px;
+        }
+        #reset {
+            margin-left: 200px;
+            border-radius: 10px;
+            border: solid #57AEFF33;
+            background-color: rgba(87,174,255, 20%);
+            font-size: 30px;
+            padding: 15px;
+        }
+    </style>
+</head>
+<body>
+<svg width="300" height="300" style="margin-left: 100px; margin-top: 200px;">
+    <circle cx="50" cy="50" r="40" fill="red"/>
+    <circle id="circle1" cx="50" cy="50" r="40" fill="blue" transform="translate(20, 20)"/>
+</svg>
+<svg width="300" height="300" style="margin-left: 100px; margin-top: 200px;">
+    <polygon id="polygon2" points="200,10 250,190 150,190" style="fill:lime;stroke:purple;stroke-width:3" />
+</svg>
+<svg width="300" height="300" style="margin-left: 100px; margin-top: 200px;">
+    <polygon id="polygon3" points="200,10 250,190 150,190" style="fill:lime;stroke:purple;stroke-width:3" />
+</svg>
+
+
+<div id="field">
+    <button id="first" onclick="translate()">translate</button>
+    <button id="rotateLeft" onclick="rotateLeft()">rotateLeft</button>
+    <button id="rotateRight" onclick="rotateRight()">rotateRight</button>
+    <button id="increase" onclick="scaleBigger()">Increase</button>
+    <button id="shrink" onclick="scaleSmaller()">shrink</button>
+    <button id="reset" onclick="reset()">reset</button>
+</div>
+
+<script>
+
+    let degree = 45;
+    let translateX = 20;
+    let translateY = 20;
+    let scaleValue = 1.0;
+    function translate() {
+        let circle = document.getElementById('circle1');
+        translateX += 20;
+        translateY += 20;
+        circle.setAttribute('transform', `translate(${translateX}, ${translateY})`);
+    }
+
+
+    function rotateLeft() {
+        let polygon = document.getElementById('polygon2');
+        degree = degree - 45;
+        polygon.setAttribute('transform', `rotate(${degree % 360} 200 100)`);
+    }
+    function rotateRight() {
+        let polygon = document.getElementById('polygon2');
+        degree = degree + 45;
+        polygon.setAttribute('transform', `rotate(${degree % 360} 200 100)`);
+    }
+
+    function scaleBigger() {
+        let polygon = document.getElementById('polygon3');
+        polygon.setAttribute('transform', `scale(${scaleValue += 0.1})`);
+    }
+    function scaleSmaller() {
+        let polygon = document.getElementById('polygon3');
+        polygon.setAttribute('transform', `scale(${scaleValue -= 0.1})`);
+    }
+
+
+    function reset() {
+        let circle = document.getElementById('circle1');
+        let polygon2 = document.getElementById('polygon2');
+        let polygon3 = document.getElementById('polygon3');
+        circle.setAttribute('transform', 'translate(20, 20)');
+        translateX = 20;translateY = 40;
+        polygon2.removeAttribute('transform');
+        polygon3.removeAttribute('transform');
+        scaleValue = 1.0
+    }
+</script>
+
+</body>
+</html>
